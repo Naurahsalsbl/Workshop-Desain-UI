@@ -1,0 +1,249 @@
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green: #2e9e57;
+  --dark:  #141a16;
+  --cream: #f9f6f0;
+  --white: #ffffff;
+  --text:  #1a2a1e;
+  --muted: #617060;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+h1, h2, h3 { font-family: 'Poppins', serif; line-height: 1.2; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 16px; }
+h3 { font-size: 1.2rem; margin-bottom: 10px; }
+p  { color: var(--muted); font-size: 0.92rem; }
+em { color: var(--green); font-style: italic; }
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+ul li { color: var(--muted); font-size: 0.92rem; padding: 4px 0; }
+ul li::before { content: "• "; color: var(--green); }
+
+/* === BUTTON === */
+.btn-primary {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity .2s;
+}
+.btn-primary:hover { opacity: .85; }
+
+/* === BOX (placeholder gambar) === */
+.box {
+  background: #d4ead9;
+  border-radius: 12px;
+  min-height: 260px;
+}
+.box.large { min-height: 380px; }
+
+/* === NAVBAR === */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 8%;
+  transition: background .3s, box-shadow .3s;
+}
+.navbar.scrolled {
+  background: rgba(249,246,240,.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 10px rgba(0,0,0,.07);
+}
+
+.logo {
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  color: var(--dark);
+}
+
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { font-size: 0.88rem; color: var(--muted); transition: color .2s; }
+nav a:hover { color: var(--green); }
+nav button {
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+  padding: 9px 22px;
+  border-radius: 100px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+nav button:hover { background: var(--green); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .25s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* === HERO === */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 140px 8% 80px;
+}
+.hero p { margin-top: 8px; max-width: 400px; }
+
+.hero-img { display: flex; 
+  justify-content: center; 
+  align-items: center; 
+} 
+.hero-img img { 
+  width: 100%; 
+  max-width: 500x; 
+  height: 500px; 
+  object-fit: cover; 
+  border-radius: 50%; 
+}
+
+/* === DARK BAND === */
+.dark-band {
+  background: var(--dark);
+  padding: 40px 8%;
+  text-align: center;
+}
+.dark-band > p { color: rgba(255,255,255,.4); font-size: 0.82rem; margin-bottom: 16px; }
+.logos { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.logos span { font-family: 'Poppins', serif; color: rgba(255,255,255,.2); font-size: 1rem; }
+
+/* === FEATURES === */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 8%;
+  background: var(--white);
+}
+.features ul { margin-top: 16px; }
+
+.feat-img { display: flex; 
+  justify-content: center; 
+  align-items: center; 
+} 
+.feat-img img { 
+  width: 100%; 
+  max-width: 450x; 
+  height: 450px; 
+  object-fit: cover; 
+  border-radius: 70px; 
+}
+
+
+/* === SPLIT === */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 8%;
+}
+.split.reverse { background: var(--white); }
+.split p { margin-bottom: 8px; }
+
+.split-img { display: flex; 
+  justify-content: center; 
+  align-items: center; 
+} 
+.split-img img { 
+  width: 100%; 
+  max-width: 450x; 
+  height: 450px; 
+  object-fit: cover; 
+  border-radius: 70px; 
+}
+
+/* === QUOTE === */
+.dark-band.quote { padding: 64px 8%; }
+.dark-band.quote p {
+  font-family: 'Poppins', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: rgba(255,255,255,.85);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* === CARDS === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 80px 8%;
+}
+.card { display: flex; flex-direction: column; gap: 10px; }
+.card .box { min-height: 180px; margin-bottom: 4px; }
+
+.card-img { display: flex; 
+  justify-content: center; 
+  align-items: center; 
+} 
+.card-img img { 
+  width: 100%; 
+  max-width: 450x; 
+  height: 450px; 
+  object-fit: cover; 
+  border-radius: 70px; 
+}
+
+/* === FOOTER === */
+footer {
+  background: var(--dark);
+  padding: 40px 8%;
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,.35); font-size: 0.85rem; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .navbar { padding: 16px 24px; }
+  .hamburger { display: flex; }
+  nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh; width: 220px;
+    background: var(--white);
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 28px;
+    gap: 24px;
+    transform: translateX(110%);
+    transition: transform .3s;
+    box-shadow: -4px 0 20px rgba(0,0,0,.1);
+    z-index: 99;
+  }
+  nav.open { transform: translateX(0); }
+  nav a { font-size: 1rem; color: var(--text); }
+
+  .hero, .features, .split, .split.reverse { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 32px; }
+  .features, .split.reverse { padding: 60px 24px; }
+  .dark-band, .dark-band.quote { padding: 40px 24px; }
+  .cards { grid-template-columns: 1fr; padding: 60px 24px; }
+  footer { padding: 32px 24px; }
+}
