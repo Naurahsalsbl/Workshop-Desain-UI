@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang — GreenBite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #1a4a2e;
+      --green-mid: #2d7a4f;
+      --green-lime: #5cb85c;
+      --green-light: #e8f5e9;
+      --accent: #f4a724;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --text: #1a1a1a;
+      --red: #ef4444;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* NAV */
+    nav {
+      background: var(--white); padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 #e5e7eb;
+    }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--green-dark); text-decoration: none; }
+    .nav-logo span { color: var(--green-lime); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gray); font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .btn-back {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: none; border: 1.5px solid #e5e7eb; color: var(--gray);
+      padding: 0.45rem 1rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--green-dark); color: var(--green-dark); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 1rem 5%; font-size: 0.82rem; color: var(--gray);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .breadcrumb a { color: var(--green-mid); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* STEPS */
+    .steps {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; padding: 1rem 5% 1.5rem; max-width: 500px; margin: 0 auto;
+    }
+    .step { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; flex: 1; }
+    .step-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700; border: 2px solid #e5e7eb;
+      background: var(--white); color: var(--gray); transition: all 0.3s;
+    }
+    .step.active .step-circle { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+    .step.done .step-circle { background: var(--green-lime); color: #fff; border-color: var(--green-lime); }
+    .step-label { font-size: 0.72rem; color: var(--gray); text-align: center; }
+    .step.active .step-label { color: var(--green-dark); font-weight: 600; }
+    .step-line { flex: 1; height: 2px; background: #e5e7eb; margin-bottom: 1.2rem; max-width: 60px; }
+    .step-line.done { background: var(--green-lime); }
+
+    /* LAYOUT */
+    .layout {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 2rem; padding: 0 5% 3rem; max-width: 1200px; margin: 0 auto;
+    }
+
+    /* CART SECTION */
+    .cart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .cart-header h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--green-dark); }
+    .clear-btn {
+      background: none; border: none; color: var(--red); font-size: 0.82rem;
+      cursor: pointer; font-family: 'Poppins', sans-serif; transition: opacity 0.2s;
+    }
+    .clear-btn:hover { opacity: 0.7; }
+
+    /* ITEM */
+    .item-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SELECT ALL */
+    .select-all-row {
+      background: var(--white); border-radius: 14px; padding: 0.85rem 1.1rem;
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--green-dark);
+    }
+
+    /* CART ITEM */
+    .cart-item {
+      background: var(--white); border-radius: 18px; padding: 1.1rem;
+      display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.75rem;
+      transition: box-shadow 0.2s; position: relative;
+    }
+    .cart-item:hover { box-shadow: 0 4px 16px rgba(26,74,46,0.08); }
+    .item-check { margin-top: 0.25rem; accent-color: var(--green-dark); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+    .item-img {
+      width: 80px; height: 80px; border-radius: 14px;
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; font-size: 2.5rem; flex-shrink: 0;
+    }
+    .item-info { flex: 1; }
+    .item-cat { font-size: 0.72rem; color: var(--green-mid); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .item-name { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin: 0.15rem 0; }
+    .item-variant { font-size: 0.78rem; color: var(--gray); margin-bottom: 0.5rem; }
+    .item-bottom { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .item-price { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 800; color: var(--green-dark); }
+    .item-price .old { font-size: 0.75rem; color: var(--gray); text-decoration: line-through; font-weight: 400; font-family: 'Poppins', sans-serif; display: block; }
+    .qty-control { display: flex; align-items: center; border: 1.5px solid #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .qty-btn { width: 30px; height: 30px; border: none; background: none; font-size: 1rem; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
+    .qty-btn:hover { background: var(--green-light); }
+    .qty-num { padding: 0 0.6rem; font-size: 0.9rem; font-weight: 700; min-width: 28px; text-align: center; }
+    .delete-btn {
+      position: absolute; top: 0.85rem; right: 0.85rem;
+      width: 28px; height: 28px; border-radius: 50%; border: none;
+      background: #fee2e2; color: var(--red); font-size: 0.8rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .delete-btn:hover { background: #fecaca; }
+
+    /* PROMO */
+    .promo-section {
+      background: var(--white); border-radius: 18px; padding: 1.1rem;
+      display: flex; gap: 0.75rem; margin-bottom: 0.75rem;
+    }
+    .promo-input {
+      flex: 1; border: 1.5px solid #e5e7eb; border-radius: 10px;
+      padding: 0.6rem 0.9rem; font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .promo-input:focus { border-color: var(--green-lime); }
+    .promo-btn {
+      background: var(--green-dark); color: #fff; border: none;
+      padding: 0.6rem 1.2rem; border-radius: 10px; font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+    }
+    .promo-btn:hover { background: var(--green-mid); }
+    .promo-success { display: none; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: var(--green-light); border-radius: 10px; font-size: 0.82rem; color: var(--green-dark); font-weight: 600; }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center; padding: 4rem 2rem; display: none;
+    }
+    .empty-state .empty-emoji { font-size: 4rem; margin-bottom: 1rem; }
+    .empty-state h3 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .empty-state p { font-size: 0.88rem; color: var(--gray); margin-bottom: 1.5rem; }
+    .btn-shop { background: var(--green-dark); color: #fff; border: none; padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }
+    .btn-shop:hover { background: var(--green-mid); }
+
+    /* SUMMARY CARD */
+    .summary-card { background: var(--white); border-radius: 20px; padding: 1.5rem; position: sticky; top: 80px; }
+    .summary-title { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1.25rem; }
+    .summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; margin-bottom: 0.75rem; }
+    .summary-row .label { color: var(--gray); }
+    .summary-row .value { font-weight: 600; color: var(--text); }
+    .summary-row .value.green { color: var(--green-mid); }
+    .summary-row .value.red { color: var(--red); }
+    .summary-divider { border: none; border-top: 1px dashed #e5e7eb; margin: 1rem 0; }
+    .summary-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .summary-total .total-label { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); }
+    .summary-total .total-value { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-dark); }
+    .btn-checkout {
+      width: 100%; background: var(--green-dark); color: #fff; border: none;
+      padding: 0.9rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+      margin-bottom: 0.75rem;
+    }
+    .btn-checkout:hover { background: var(--green-mid); }
+    .btn-continue {
+      width: 100%; background: none; color: var(--green-dark); border: 1.5px solid var(--green-dark);
+      padding: 0.75rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-continue:hover { background: var(--green-light); }
+
+    /* BENEFIT LIST */
+    .benefit-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .benefit-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--gray); }
+
+    /* REKOMENDASI */
+    .reko-section { margin-top: 2rem; }
+    .reko-title { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1rem; }
+    .reko-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .reko-card {
+      background: var(--white); border-radius: 14px; overflow: hidden;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .reko-card:hover { transform: translateY(-3px); }
+    .reko-img { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: var(--green-light); }
+    .reko-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .reko-body { padding: 0.6rem; }
+    .reko-name { font-size: 0.78rem; font-weight: 600; color: var(--green-dark); margin-bottom: 0.2rem; line-height: 1.3; }
+    .reko-price { font-size: 0.78rem; color: var(--green-mid); font-weight: 700; }
+    .reko-add { width: 100%; margin-top: 0.4rem; background: var(--green-light); border: none; border-radius: 8px; padding: 0.3rem; font-size: 0.72rem; color: var(--green-dark); font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .reko-add:hover { background: var(--green-lime); color: #fff; }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--green-dark); color: #fff; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.9rem; z-index: 999; transition: transform 0.3s ease; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .summary-card { position: static; }
+      .reko-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .layout { padding: 0 4% 2rem; }
+      .item-img { width: 64px; height: 64px; font-size: 2rem; }
+      .reko-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">GREEN<span>BITE</span></a>
+    <ul class="nav-links">
+      <li><a href="#">Fitur</a></li>
+      <li><a href="#">Harga</a></li>
+      <li><a href="#">Tentang</a></li>
+      <li><a href="arsip_artikel.html">Blog</a></li>
+    </ul>
+    <button class="btn-back" onclick="window.location.href='katalog_produk.html'">← Lanjut Belanja</button>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="index.html">Beranda</a> ›
+    <a href="katalog_produk.html">Katalog</a> ›
+    <span>Keranjang</span>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step active">
+      <div class="step-circle">1</div>
+      <div class="step-label">Keranjang</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div class="step-label">Pembayaran</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-circle">3</div>
+      <div class="step-label">Selesai</div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- LEFT -->
+    <div>
+      <div class="cart-header">
+        <h2>Keranjang Saya <span id="itemCount" style="font-size:0.9rem;color:var(--gray);font-weight:400">(3 item)</span></h2>
+        <button class="clear-btn" onclick="clearCart()">🗑 Hapus Semua</button>
+      </div>
+
+      <!-- SELECT ALL -->
+      <div class="select-all-row">
+        <input type="checkbox" class="item-check" id="selectAll" onchange="toggleSelectAll(this)" checked/>
+        <label for="selectAll" style="cursor:pointer">Pilih Semua</label>
+      </div>
+
+      <!-- CART ITEMS -->
+      <div id="cartItems"></div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-emoji">🛒</div>
+        <h3>Keranjangmu Kosong</h3>
+        <p>Yuk, tambahkan produk favoritmu dulu!</p>
+        <button class="btn-shop" onclick="window.location.href='katalog_produk.html'">Lihat Katalog</button>
+      </div>
+
+      <!-- PROMO -->
+      <div class="promo-section" id="promoSection">
+        <input type="text" class="promo-input" placeholder="Kode promo (coba: GREENBITE10)" id="promoInput"/>
+        <button class="promo-btn" onclick="applyPromo()">Pakai</button>
+      </div>
+      <div class="promo-success" id="promoSuccess">
+        ✅ Promo <strong>GREENBITE10</strong> berhasil! Hemat Rp 13.500
+        <button onclick="removePromo()" style="margin-left:auto;background:none;border:none;color:var(--red);cursor:pointer;font-size:1rem">✕</button>
+      </div>
+
+      <!-- REKOMENDASI -->
+      <div class="reko-section">
+        <div class="reko-title">🌿 Mungkin Kamu Suka</div>
+        <div class="reko-grid">
+          <div class="reko-card">
+            <div class="reko-img"><img src="images/greendetox.jpg" alt="Green Detox Juice"></div>
+            <div class="reko-body">
+              <div class="reko-name">Green Detox Juice</div>
+              <div class="reko-price">Rp 30.000</div>
+              <button class="reko-add" onclick="showToast('✅ Ditambahkan!')">+ Tambah</button>
+            </div>
+          </div>
+          <div class="reko-card">
+            <div class="reko-img"><img src="images/granola.jpg" alt="Green Detox Juice"></div>
+            <div class="reko-body">
+              <div class="reko-name">Granola & Yogurt</div>
+              <div class="reko-price">Rp 28.000</div>
+              <button class="reko-add" onclick="showToast('✅ Ditambahkan!')">+ Tambah</button>
+            </div>
+          </div>
+          <div class="reko-card">
+            <div class="reko-img"><img src="images/berry.jpg" alt="Green Detox Juice"></div>
+            <div class="reko-body">
+              <div class="reko-name">Berry Blast Smoothie</div>
+              <div class="reko-price">Rp 35.000</div>
+              <button class="reko-add" onclick="showToast('✅ Ditambahkan!')">+ Tambah</button>
+            </div>
+          </div>
+          <div class="reko-card">
+            <div class="reko-img"><img src="images/avocadotoast.jpg" alt="Green Detox Juice"></div>
+            <div class="reko-body">
+              <div class="reko-name">Avocado Toast Box</div>
+              <div class="reko-price">Rp 32.000</div>
+              <button class="reko-add" onclick="showToast('✅ Ditambahkan!')">+ Tambah</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SUMMARY -->
+    <div>
+      <div class="summary-card">
+        <div class="summary-title">📋 Ringkasan Pesanan</div>
+        <div class="summary-row"><span class="label">Subtotal (3 item)</span><span class="value" id="subtotal">Rp 135.000</span></div>
+        <div class="summary-row"><span class="label">Ongkos Kirim</span><span class="value green">Gratis</span></div>
+        <div class="summary-row"><span class="label">Diskon Produk</span><span class="value red" id="discRow">− Rp 10.000</span></div>
+        <div class="summary-row" id="promoRow" style="display:none"><span class="label">Promo GREENBITE10</span><span class="value red">− Rp 13.500</span></div>
+        <hr class="summary-divider"/>
+        <div class="summary-total">
+          <span class="total-label">Total</span>
+          <span class="total-value" id="totalPrice">Rp 125.000</span>
+        </div>
+        <button class="btn-checkout" onclick="window.location.href='pembayaran.html'">Lanjut ke Pembayaran →</button>
+        <button class="btn-continue" onclick="window.location.href='katalog_produk.html'">← Lanjut Belanja</button>
+        <div class="benefit-list">
+          <div class="benefit-item">🚚 Gratis ongkir untuk semua pesanan</div>
+          <div class="benefit-item">❄️ Dikemas segar & dingin</div>
+          <div class="benefit-item">🔒 Pembayaran aman & terenkripsi</div>
+          <div class="benefit-item">↩️ Garansi uang kembali 24 jam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let items =
+      JSON.parse(localStorage.getItem("cart")) || [];
+    let promoActive = false;
+
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      const empty = document.getElementById('emptyState');
+      const promoSec = document.getElementById('promoSection');
+
+      if (items.length === 0) {
+        container.innerHTML = '';
+        empty.style.display = 'block';
+        promoSec.style.display = 'none';
+        document.getElementById('itemCount').textContent = '(0 item)';
+        updateSummary();
+        return;
+      }
+
+      empty.style.display = 'none';
+      promoSec.style.display = 'flex';
+      document.getElementById('itemCount').textContent = `(${items.reduce((a,b) => a + b.qty, 0)} item)`;
+
+      container.innerHTML = items.map(item => `
+        <div class="cart-item" id="item-${item.id}">
+          <input type="checkbox" class="item-check" checked onchange="updateSummary()"/>
+          <div class="item-img"><img src="images/${item.img}" alt="${item.name}"></div>
+          <div class="item-info">
+            <div class="item-cat">${item.cat}</div>
+            <div class="item-name">${item.name}</div>
+            <div class="item-variant">${item.variant}</div>
+            <div class="item-bottom">
+              <div class="item-price">
+                ${item.oldPrice ? `<span class="old">Rp ${item.oldPrice.toLocaleString('id')}</span>` : ''}
+                Rp ${(item.price * item.qty).toLocaleString('id')}
+              </div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                <span class="qty-num" id="qty-${item.id}">${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+          <button class="delete-btn" onclick="deleteItem(${item.id})">✕</button>
+        </div>
+      `).join('');
+
+      updateSummary();
+    }
+
+    function changeQty(id, delta) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      item.qty = Math.max(1, item.qty + delta);
+      localStorage.setItem("cart", JSON.stringify(items));
+      renderCart();
+    }
+
+    function deleteItem(id) {
+      items = items.filter(i => i.id !== id);
+
+      localStorage.setItem("cart", JSON.stringify(items));
+
+      renderCart();
+      showToast('🗑 Item dihapus dari keranjang');
+    }
+
+    function clearCart() {
+      if (items.length === 0) return;
+
+      items = [];
+
+      localStorage.removeItem("cart");
+
+      renderCart();
+      showToast('🗑 Keranjang dikosongkan');
+    }
+
+    function updateSummary() {
+      const checks = document.querySelectorAll('#cartItems .item-check');
+      let subtotal = 0, disc = 0;
+      items.forEach((item, i) => {
+        if (checks[i] && checks[i].checked) {
+          subtotal += item.price * item.qty;
+          if (item.oldPrice) disc += (item.oldPrice - item.price) * item.qty;
+        }
+      });
+      const promo = promoActive ? Math.round(subtotal * 0.1) : 0;
+      const total = subtotal - promo;
+      document.getElementById('subtotal').textContent = `Rp ${subtotal.toLocaleString('id')}`;
+      document.getElementById('discRow').textContent = disc > 0 ? `− Rp ${disc.toLocaleString('id')}` : 'Rp 0';
+      document.getElementById('totalPrice').textContent = `Rp ${total.toLocaleString('id')}`;
+    }
+
+    function toggleSelectAll(el) {
+      document.querySelectorAll('#cartItems .item-check').forEach(c => c.checked = el.checked);
+      updateSummary();
+    }
+
+    function applyPromo() {
+      const val = document.getElementById('promoInput').value.trim().toUpperCase();
+      if (val === 'GREENBITE10') {
+        promoActive = true;
+        document.getElementById('promoSection').style.display = 'none';
+        document.getElementById('promoSuccess').style.display = 'flex';
+        document.getElementById('promoRow').style.display = 'flex';
+        updateSummary();
+        showToast('🎉 Promo berhasil dipakai!');
+      } else {
+        showToast('❌ Kode promo tidak valid');
+      }
+    }
+
+    function removePromo() {
+      promoActive = false;
+      document.getElementById('promoSection').style.display = 'flex';
+      document.getElementById('promoSuccess').style.display = 'none';
+      document.getElementById('promoRow').style.display = 'none';
+      document.getElementById('promoInput').value = '';
+      updateSummary();
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

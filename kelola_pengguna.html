@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelola Pengguna — GreenBite Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-dark: #1a4a2e; --green-mid: #2d7a4f; --green-lime: #5cb85c;
+      --green-light: #e8f5e9; --accent: #f4a724; --bg: #f5f5f0; --white: #ffffff;
+      --gray: #6b7280; --text: #1a1a1a; --red: #ef4444; --sidebar: 240px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+    .sidebar { width: var(--sidebar); background: var(--green-dark); color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: transform 0.3s; }
+    .sidebar-logo { padding: 1.5rem 1.25rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sidebar-logo span { font-weight: 800; font-size: 1.3rem; }
+    .sidebar-logo span em { color: #a8e063; font-style: normal; }
+    .sidebar-logo small { display: block; font-size: 0.7rem; opacity: 0.6; margin-top: 0.2rem; }
+    .sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
+    .nav-section { padding: 0.5rem 1.25rem 0.25rem; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; }
+    .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1.25rem; font-size: 0.88rem; cursor: pointer; transition: background 0.2s; color: rgba(255,255,255,0.75); text-decoration: none; border-left: 3px solid transparent; }
+    .nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .nav-item.active { background: rgba(168,224,99,0.15); color: #a8e063; border-left-color: #a8e063; }
+    .nav-item .icon { font-size: 1rem; width: 20px; text-align: center; }
+    .sidebar-footer { padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .admin-info { display: flex; align-items: center; gap: 0.75rem; }
+    .admin-avatar { width: 34px; height: 34px; border-radius: 50%; background: #a8e063; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .admin-name { font-size: 0.82rem; font-weight: 600; }
+    .admin-role { font-size: 0.7rem; opacity: 0.6; }
+
+    .main { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    .topbar { background: var(--white); padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 50; }
+    .topbar-left h1 { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+    .breadcrumb-top { font-size: 0.78rem; color: var(--gray); }
+    .notif-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #e5e7eb; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative; }
+    .notif-dot { position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); border: 2px solid #fff; }
+    #menuBtn { display: none; background: none; border: none; cursor: pointer; font-size: 1.2rem; }
+
+    .content { padding: 1.75rem 2rem; flex: 1; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.75rem; }
+    .stat-card { background: var(--white); border-radius: 16px; padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
+    .stat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .stat-info { flex: 1; }
+    .stat-val { font-size: 1.4rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; }
+    .stat-badge { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 50px; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #16a34a; }
+    .badge-blue { background: #dbeafe; color: #2563eb; }
+    .badge-yellow { background: #fef9c3; color: #ca8a04; }
+    .badge-red { background: #fee2e2; color: var(--red); }
+
+    .toolbar { background: var(--white); border-radius: 16px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .search-box { display: flex; align-items: center; gap: 0.5rem; background: var(--bg); border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; flex: 1; min-width: 200px; }
+    .search-box input { border: none; background: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; width: 100%; }
+    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
+    .btn-secondary { background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark); padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+    .btn-secondary:hover { background: var(--green-light); }
+
+    .table-card { background: var(--white); border-radius: 16px; overflow: hidden; }
+    .table-header { padding: 1rem 1.25rem; border-bottom: 1px solid #e5e7eb; }
+    .table-title { font-size: 0.95rem; font-weight: 700; color: var(--green-dark); }
+    .table-count { font-size: 0.8rem; color: var(--gray); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--bg); }
+    thead th { padding: 0.75rem 1rem; text-align: left; font-size: 0.78rem; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+    tbody tr { border-top: 1px solid #f3f4f6; transition: background 0.15s; }
+    tbody tr:hover { background: #fafafa; }
+    tbody td { padding: 0.85rem 1rem; font-size: 0.85rem; vertical-align: middle; }
+
+    .user-cell { display: flex; align-items: center; gap: 0.75rem; }
+    .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .user-name { font-weight: 600; color: var(--green-dark); font-size: 0.88rem; }
+    .user-email { font-size: 0.74rem; color: var(--gray); }
+
+    .role-badge { padding: 0.2rem 0.65rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; }
+    .role-customer { background: var(--green-light); color: var(--green-mid); }
+    .role-admin { background: #ede9fe; color: #7c3aed; }
+
+    .status-badge { padding: 0.2rem 0.65rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; }
+    .status-active { background: #dcfce7; color: #16a34a; }
+    .status-inactive { background: #fee2e2; color: var(--red); }
+
+    .action-btns { display: flex; gap: 0.4rem; }
+    .act-btn { width: 30px; height: 30px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.2s; }
+    .act-view { background: var(--green-light); color: var(--green-mid); }
+    .act-view:hover { background: #bbf7d0; }
+    .act-toggle { background: #fef9c3; color: #ca8a04; }
+    .act-toggle:hover { background: #fef08a; }
+    .act-delete { background: #fee2e2; color: var(--red); }
+    .act-delete:hover { background: #fecaca; }
+
+    .pagination { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-top: 1px solid #e5e7eb; font-size: 0.82rem; color: var(--gray); flex-wrap: wrap; gap: 0.75rem; }
+    .page-btns { display: flex; gap: 0.3rem; }
+    .page-btn { width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid #e5e7eb; background: var(--white); cursor: pointer; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .page-btn.active, .page-btn:hover { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+
+    /* MODAL DETAIL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); border-radius: 20px; width: 100%; max-width: 420px; }
+    .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; }
+    .modal-title { font-size: 1.05rem; font-weight: 700; color: var(--green-dark); }
+    .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bg); cursor: pointer; font-size: 1rem; }
+    .modal-body { padding: 1.5rem; text-align: center; }
+    .modal-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 1rem; }
+    .modal-body h3 { font-size: 1.1rem; color: var(--green-dark); margin-bottom: 0.25rem; }
+    .modal-body p { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
+    .modal-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; text-align: left; }
+    .modal-stat { background: var(--bg); border-radius: 12px; padding: 0.85rem; }
+    .modal-stat .label { font-size: 0.72rem; color: var(--gray); }
+    .modal-stat .value { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--green-dark); color: #fff; padding: 0.75rem 1.25rem; border-radius: 12px; font-size: 0.88rem; z-index: 999; transform: translateY(100px); opacity: 0; transition: all 0.3s; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .content { padding: 1rem; }
+      .topbar { padding: 0 1rem; }
+      #menuBtn { display: block; }
+    }
+    @media (max-width: 480px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><span>GREEN<em>BITE</em></span><small>Admin Panel</small></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Menu Utama</div>
+      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <div class="nav-section">Kelola Konten</div>
+      <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
+      <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
+      <div class="nav-section">Kelola Pengguna</div>
+      <a class="nav-item active" href="kelola_pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
+      <a class="nav-item" href="kelola_transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
+      <div class="nav-section">Lainnya</div>
+      <a class="nav-item" href="index.html"><span class="icon">🌐</span> Lihat Website</a>
+      <a class="nav-item" href="#"><span class="icon">⚙️</span> Pengaturan</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="admin-info">
+        <div class="admin-avatar">👩‍💼</div>
+        <div><div class="admin-name">Rina</div><div class="admin-role">Administrator</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left" style="display:flex;align-items:center;gap:1rem">
+        <button id="menuBtn" onclick="toggleSidebar()">☰</button>
+        <div><h1>Kelola Pengguna</h1><div class="breadcrumb-top">Admin / Kelola Pengguna</div></div>
+      </div>
+      <button class="notif-btn">🔔<span class="notif-dot"></span></button>
+    </div>
+
+    <div class="content">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#dcfce7">👥</div>
+          <div class="stat-info"><div class="stat-val">1.248</div><div class="stat-label">Total Pengguna</div></div>
+          <span class="stat-badge badge-green">+24 baru</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#dbeafe">✅</div>
+          <div class="stat-info"><div class="stat-val">1.190</div><div class="stat-label">Akun Aktif</div></div>
+          <span class="stat-badge badge-blue">95%</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#fee2e2">❌</div>
+          <div class="stat-info"><div class="stat-val">58</div><div class="stat-label">Akun Nonaktif</div></div>
+          <span class="stat-badge badge-red">5%</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#fef9c3">🛒</div>
+          <div class="stat-info"><div class="stat-val">312</div><div class="stat-label">Pelanggan Aktif Bulan Ini</div></div>
+          <span class="stat-badge badge-yellow">Bertransaksi</span>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" placeholder="Cari nama atau email..." id="searchInput" oninput="filterTable()"/>
+        </div>
+        <select class="filter-select" id="statusFilter" onchange="filterTable()">
+          <option value="">Semua Status</option>
+          <option value="Aktif">Aktif</option>
+          <option value="Nonaktif">Nonaktif</option>
+        </select>
+        <button class="btn-secondary" onclick="exportData()">📥 Export</button>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">Daftar Pengguna</div>
+          <div class="table-count" id="tableCount">Menampilkan 8 pengguna</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pengguna</th>
+                <th>Role</th>
+                <th>Tgl Daftar</th>
+                <th>Transaksi</th>
+                <th>Total Belanja</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <span id="paginationInfo">1-8 dari 8 pengguna</span>
+          <div class="page-btns">
+            <button class="page-btn">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DETAIL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">👤 Detail Pengguna</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-avatar" id="dAvatar">👤</div>
+        <h3 id="dName">-</h3>
+        <p id="dEmail">-</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="label">Total Transaksi</div><div class="value" id="dTrx">-</div></div>
+          <div class="modal-stat"><div class="label">Total Belanja</div><div class="value" id="dSpent">-</div></div>
+          <div class="modal-stat"><div class="label">Tgl Bergabung</div><div class="value" id="dJoin" style="font-size:0.85rem">-</div></div>
+          <div class="modal-stat"><div class="label">Status</div><div class="value" id="dStatus" style="font-size:0.85rem">-</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let users = [
+      { id:"USR-001", name:"Andy Pratama", email:"andy.p@email.com", emoji:"🧑", role:"Customer", joined:"12 Jan 2025", trx:18, spent:1850000, status:"Aktif" },
+      { id:"USR-002", name:"Budi Santoso", email:"budi.santoso@email.com", emoji:"👴", role:"Customer", joined:"3 Feb 2025", trx:5, spent:420000, status:"Aktif" },
+      { id:"USR-003", name:"Siti Rahayu", email:"siti.rahayu@email.com", emoji:"👩", role:"Customer", joined:"20 Feb 2025", trx:32, spent:3200000, status:"Aktif" },
+      { id:"USR-004", name:"Dewi Kusuma", email:"dewi.k@email.com", emoji:"👩‍🦰", role:"Customer", joined:"5 Mar 2025", trx:9, spent:780000, status:"Aktif" },
+      { id:"USR-005", name:"Rina Wijaya", email:"rina.admin@greenbite.com", emoji:"👩‍💼", role:"Admin", joined:"1 Jan 2025", trx:0, spent:0, status:"Aktif" },
+      { id:"USR-006", name:"Fajar Ramadhan", email:"fajar.r@email.com", emoji:"🧑‍🦱", role:"Customer", joined:"15 Mar 2025", trx:3, spent:210000, status:"Nonaktif" },
+      { id:"USR-007", name:"Maya Anggraini", email:"maya.a@email.com", emoji:"👩‍🦱", role:"Customer", joined:"22 Mar 2025", trx:14, spent:1620000, status:"Aktif" },
+      { id:"USR-008", name:"Eko Prasetyo", email:"eko.p@email.com", emoji:"🧔", role:"Customer", joined:"2 Apr 2025", trx:1, spent:45000, status:"Nonaktif" },
+    ];
+
+    function renderTable(list) {
+      const tbody = document.getElementById('tableBody');
+      document.getElementById('tableCount').textContent = `Menampilkan ${list.length} pengguna`;
+      document.getElementById('paginationInfo').textContent = `1-${list.length} dari ${list.length} pengguna`;
+
+      tbody.innerHTML = list.map(u => `
+        <tr id="row-${u.id}">
+          <td>
+            <div class="user-cell">
+              <div class="user-avatar">${u.emoji}</div>
+              <div>
+                <div class="user-name">${u.name}</div>
+                <div class="user-email">${u.email}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="role-badge ${u.role === 'Admin' ? 'role-admin' : 'role-customer'}">${u.role}</span></td>
+          <td style="font-size:0.82rem;color:var(--gray)">${u.joined}</td>
+          <td style="font-weight:600">${u.trx}x</td>
+          <td style="font-weight:700;color:var(--green-dark)">Rp ${u.spent.toLocaleString('id')}</td>
+          <td><span class="status-badge ${u.status === 'Aktif' ? 'status-active' : 'status-inactive'}">${u.status}</span></td>
+          <td>
+            <div class="action-btns">
+              <button class="act-btn act-view" title="Detail" onclick="showDetail('${u.id}')">👁</button>
+              ${u.role !== 'Admin' ? `<button class="act-btn act-toggle" title="${u.status === 'Aktif' ? 'Nonaktifkan' : 'Aktifkan'}" onclick="toggleStatus('${u.id}')">${u.status === 'Aktif' ? '🔒' : '🔓'}</button>` : ''}
+              ${u.role !== 'Admin' ? `<button class="act-btn act-delete" title="Hapus" onclick="deleteUser('${u.id}')">🗑</button>` : ''}
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterTable() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const status = document.getElementById('statusFilter').value;
+      const filtered = users.filter(u =>
+        (u.name.toLowerCase().includes(search) || u.email.toLowerCase().includes(search)) &&
+        (status === '' || u.status === status)
+      );
+      renderTable(filtered);
+    }
+
+    function toggleStatus(id) {
+      const u = users.find(u => u.id === id);
+      if (u) {
+        u.status = u.status === 'Aktif' ? 'Nonaktif' : 'Aktif';
+        renderTable(users);
+        showToast(u.status === 'Aktif' ? '✅ Akun diaktifkan kembali!' : '🔒 Akun dinonaktifkan!');
+      }
+    }
+
+    function deleteUser(id) {
+      if (confirm('Hapus pengguna ini secara permanen?')) {
+        users = users.filter(u => u.id !== id);
+        renderTable(users);
+        showToast('🗑 Pengguna berhasil dihapus!');
+      }
+    }
+
+    function showDetail(id) {
+      const u = users.find(u => u.id === id);
+      if (!u) return;
+      document.getElementById('dAvatar').textContent = u.emoji;
+      document.getElementById('dName').textContent = u.name;
+      document.getElementById('dEmail').textContent = u.email;
+      document.getElementById('dTrx').textContent = u.trx + 'x';
+      document.getElementById('dSpent').textContent = 'Rp ' + u.spent.toLocaleString('id');
+      document.getElementById('dJoin').textContent = u.joined;
+      document.getElementById('dStatus').textContent = u.status;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+    function exportData() { showToast('📥 Data pengguna sedang diekspor...'); }
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    renderTable(users);
+  </script>
+</body>
+</html>

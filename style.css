@@ -115,8 +115,8 @@ nav button:hover { background: var(--green); }
 } 
 .hero-img img { 
   width: 100%; 
-  max-width: 500x; 
-  height: 500px; 
+  max-width: 450px; 
+  height: 450px; 
   object-fit: cover; 
   border-radius: 50%; 
 }

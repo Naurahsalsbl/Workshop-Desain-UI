@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Produk — GreenBite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #1a4a2e;
+      --green-mid: #2d7a4f;
+      --green-lime: #5cb85c;
+      --green-light: #e8f5e9;
+      --accent: #f4a724;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --text: #1a1a1a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* NAV */
+    nav {
+      background: var(--white); padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 #e5e7eb;
+    }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--green-dark); text-decoration: none; }
+    .nav-logo span { color: var(--green-lime); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gray); font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .btn-cart {
+      background: var(--green-dark); color: var(--white); border: none;
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;
+      transition: background 0.2s;
+    }
+    .btn-cart:hover { background: var(--green-mid); }
+    .cart-badge {
+      background: var(--accent); color: #fff; border-radius: 50%;
+      width: 18px; height: 18px; font-size: 0.7rem;
+      display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 1rem 5%; font-size: 0.82rem; color: var(--gray);
+      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--green-mid); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* MAIN LAYOUT */
+    .main { padding: 0 5% 3rem; max-width: 1200px; margin: 0 auto; }
+
+    .main-img{
+    background:white;
+    overflow:hidden;
+    }
+
+    .main-img img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    /* PRODUCT TOP */
+    .product-top {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+
+    /* IMAGE GALLERY */
+    .gallery { display: flex; flex-direction: column; gap: 1rem; }
+    .main-img {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, #a8e063 0%, var(--green-mid) 100%);
+      border-radius: 24px; display: flex; align-items: center; justify-content: center;
+      font-size: 10rem; position: relative; overflow: hidden;
+    }
+    .badge-img {
+      position: absolute; top: 16px; left: 16px;
+      background: #ef4444; color: #fff; padding: 0.25rem 0.85rem;
+      border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    }
+    .thumb-row { display: flex; gap: 0.75rem; }
+    .thumb {
+      width:90px;
+      height:90px;
+      overflow:hidden;
+      border-radius:18px;
+      cursor:pointer;
+    }
+
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }   
+    .thumb.active { border-color: var(--green-lime); }
+    .thumb:hover { border-color: var(--green-mid); }
+
+    /* PRODUCT INFO */
+    .product-info { display: flex; flex-direction: column; gap: 1rem; }
+    .product-tag {
+      display: inline-block; background: var(--green-light); color: var(--green-mid);
+      padding: 0.25rem 0.85rem; border-radius: 50px; font-size: 0.75rem;
+      font-weight: 600; width: fit-content;
+    }
+    .product-name {
+      font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800; color: var(--green-dark); line-height: 1.2;
+    }
+    .product-rating { display: flex; align-items: center; gap: 0.75rem; }
+    .stars { color: var(--accent); font-size: 1rem; }
+    .rating-score { font-weight: 700; color: var(--green-dark); }
+    .rating-count { font-size: 0.85rem; color: var(--gray); }
+    .divider { border: none; border-top: 1px solid #e5e7eb; }
+    .price-row { display: flex; align-items: flex-end; gap: 0.75rem; }
+    .price-main {
+      font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800;
+      color: var(--green-dark);
+    }
+    .price-old { font-size: 1rem; color: var(--gray); text-decoration: line-through; margin-bottom: 0.3rem; }
+    .price-disc {
+      background: #fee2e2; color: #ef4444; padding: 0.2rem 0.6rem;
+      border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;
+    }
+    .product-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+
+    /* OPTIONS */
+    .option-label { font-size: 0.85rem; font-weight: 600; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .option-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pill {
+      padding: 0.4rem 1rem; border-radius: 50px; border: 1.5px solid #e5e7eb;
+      font-size: 0.82rem; cursor: pointer; transition: all 0.2s; background: var(--white);
+      font-family: 'Poppins', sans-serif;
+    }
+    .pill.active, .pill:hover { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+
+    /* QTY */
+    .qty-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .qty-control { display: flex; align-items: center; gap: 0; border: 1.5px solid #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .qty-btn {
+      width: 38px; height: 38px; border: none; background: var(--white);
+      font-size: 1.2rem; cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qty-btn:hover { background: var(--green-light); }
+    .qty-num { padding: 0 1rem; font-weight: 700; font-size: 1rem; min-width: 40px; text-align: center; }
+
+    /* ACTION BUTTONS */
+    .action-row { display: flex; gap: 0.75rem; }
+    .btn-order {
+      flex: 1; background: var(--green-dark); color: #fff; border: none;
+      padding: 0.85rem; border-radius: 50px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-order:hover { background: var(--green-mid); }
+    .btn-wishlist {
+      width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #e5e7eb;
+      background: var(--white); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .btn-wishlist:hover { border-color: #ef4444; }
+
+    /* HIGHLIGHTS */
+    .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .highlight-item {
+      background: var(--green-light); border-radius: 14px;
+      padding: 0.85rem; text-align: center;
+    }
+    .highlight-item .hi-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .highlight-item .hi-text { font-size: 0.75rem; color: var(--green-dark); font-weight: 600; line-height: 1.3; }
+
+    /* TABS */
+    .tabs-section { margin-bottom: 3rem; }
+    .tabs { display: flex; gap: 0; border-bottom: 2px solid #e5e7eb; margin-bottom: 1.5rem; }
+    .tab-btn {
+      padding: 0.75rem 1.5rem; border: none; background: none;
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--gray);
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active { color: var(--green-dark); font-weight: 700; border-bottom-color: var(--green-dark); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* NUTRITION TABLE */
+    .nutrition-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .nutrition-table th { background: var(--green-dark); color: #fff; padding: 0.75rem 1rem; text-align: left; }
+    .nutrition-table td { padding: 0.65rem 1rem; border-bottom: 1px solid #e5e7eb; }
+    .nutrition-table tr:nth-child(even) td { background: var(--green-light); }
+
+    /* REVIEWS */
+    .review-summary { display: flex; gap: 2rem; align-items: center; margin-bottom: 1.5rem; padding: 1.5rem; background: var(--white); border-radius: 18px; }
+    .review-score { text-align: center; }
+    .review-score .big { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
+    .review-score .stars-big { color: var(--accent); font-size: 1.2rem; }
+    .review-score small { font-size: 0.78rem; color: var(--gray); }
+    .review-bars { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+    .bar-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; }
+    .bar-track { flex: 1; height: 8px; background: #e5e7eb; border-radius: 50px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 50px; }
+    .review-list { display: flex; flex-direction: column; gap: 1rem; }
+    .review-item { background: var(--white); border-radius: 14px; padding: 1.1rem; }
+    .review-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .reviewer-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #a8e063, var(--green-mid)); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .reviewer-name { font-weight: 600; font-size: 0.88rem; color: var(--green-dark); }
+    .reviewer-date { font-size: 0.75rem; color: var(--gray); }
+    .review-stars { color: var(--accent); font-size: 0.85rem; }
+    .review-text { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+    /* RELATED PRODUCTS */
+    .related-section { margin-bottom: 3rem; }
+    .related-section h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1.25rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .rel-card {
+      background: var(--white); border-radius: 16px; overflow: hidden;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .rel-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(26,74,46,0.1); }
+    .rel-img { 
+      width:100%;
+      height:170px;
+      overflow:hidden;
+      background:#eef8ef;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .rel-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .rel-body { padding: 0.75rem; }
+    .rel-name { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.25rem; }
+    .rel-price { font-size: 0.85rem; font-weight: 600; color: var(--green-mid); }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--green-dark); color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.9rem;
+      z-index: 999; transition: transform 0.3s ease; white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .product-top { grid-template-columns: 1fr; gap: 1.5rem; }
+      .main-img { font-size: 7rem; }
+      .highlights { grid-template-columns: repeat(3, 1fr); }
+      .review-summary { flex-direction: column; gap: 1rem; }
+      .main { padding: 0 4% 2rem; }
+    }
+    @media (max-width: 480px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+      .highlights { grid-template-columns: repeat(3, 1fr); }
+      .action-row { flex-direction: column; }
+      .btn-wishlist { width: 100%; border-radius: 50px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">GREEN<span>BITE</span></a>
+    <ul class="nav-links">
+      <li><a href="#">Fitur</a></li>
+      <li><a href="#">Harga</a></li>
+      <li><a href="#">Tentang</a></li>
+      <li><a href="arsip_artikel.html">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-cart" onclick="window.location.href='keranjang.html'">
+        🛒 Keranjang <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Beranda</a> ›
+    <a href="katalog_produk.html">Katalog</a> ›
+    <span id="breadcrumbName"></span>
+  </div>
+
+  <div class="main">
+    <!-- PRODUCT TOP SECTION -->
+    <div class="product-top">
+      <!-- GALLERY -->
+      <div class="gallery">
+        <div class="main-img" id="mainImg">
+          <img id="productImage" src="" alt="">
+        </div>
+        <div class="thumb-row">
+          <div class="thumb active"><img id="thumb1"></div>
+          <div class="thumb"><img id="thumb2"></div>
+          <div class="thumb"><img id="thumb3"></div>
+          <div class="thumb"> <img id="thumb4"></div>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="product-info">
+        <span class="product-tag" id="productCategory"></span>
+        <h1 class="product-name" id="productName"></h1>
+
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-score">4.9</span>
+          <span class="rating-count">(128 ulasan)</span>
+        </div>
+
+        <hr class="divider"/>
+
+        <div class="price-row">
+          <div class="price-main" id="productPrice"></div>
+          <div class="price-old" id="productOldPrice"></div>
+          <div class="price-disc" id="productDiscount"></div>
+        </div>
+
+        <p class="product-desc" id="productDesc">
+        </p>
+
+        <hr class="divider"/>
+
+        <!-- UKURAN -->
+        <div>
+          <div class="option-label">Ukuran Porsi</div>
+          <div class="option-pills">
+            <button class="pill" onclick="selectPill(this)">Regular (250g)</button>
+            <button class="pill active" onclick="selectPill(this)">Large (400g)</button>
+            <button class="pill" onclick="selectPill(this)">Family (800g)</button>
+          </div>
+        </div>
+
+        <!-- TAMBAHAN -->
+        <div>
+          <div class="option-label">Tambahan Topping</div>
+          <div class="option-pills">
+            <button class="pill active" onclick="selectPill(this)">Tanpa Topping</button>
+            <button class="pill" onclick="selectPill(this)">+ Crouton</button>
+            <button class="pill" onclick="selectPill(this)">+ Telur Rebus</button>
+            <button class="pill" onclick="selectPill(this)">+ Keju Parmesan</button>
+          </div>
+        </div>
+
+        <!-- QTY -->
+        <div class="qty-row">
+          <div class="option-label" style="margin:0">Jumlah:</div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-num" id="qty">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <span style="font-size:0.85rem;color:var(--gray)">Stok: <strong style="color:var(--green-mid)">24 tersisa</strong></span>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="action-row">
+          <button class="btn-order" onclick="addToCart()">🛒 Tambah ke Keranjang</button>
+          <button class="btn-wishlist" id="wishBtn" onclick="toggleWish()">🤍</button>
+        </div>
+
+        <!-- HIGHLIGHTS -->
+        <div class="highlights">
+          <div class="highlight-item">
+            <div class="hi-icon">🌿</div>
+            <div class="hi-text">100% Organik</div>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-icon">🚚</div>
+            <div class="hi-text">Gratis Ongkir</div>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-icon">❄️</div>
+            <div class="hi-text">Fresh & Dingin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-section">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('deskripsi', this)">Deskripsi</button>
+        <button class="tab-btn" onclick="switchTab('nutrisi', this)">Informasi Nutrisi</button>
+        <button class="tab-btn" onclick="switchTab('ulasan', this)">Ulasan (128)</button>
+      </div>
+
+      <!-- DESKRIPSI -->
+      <div class="tab-content active" id="description">
+        <p id="productLongDesc"></p>
+        <div style="background:var(--green-light);border-radius:14px;padding:1.25rem;margin-top:1rem">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--green-dark);margin-bottom:0.75rem">🥗 Bahan-bahan:</div>
+          <p style="font-size:0.85rem;color:var(--green-dark);line-height:1.8">
+            Selada romaine, bayam baby, kale, mentimun, tomat cherry, alpukat, biji labu, biji bunga matahari, lemon, bawang putih, minyak zaitun, garam himalaya.
+          </p>
+        </div>
+      </div>
+
+      <!-- NUTRISI -->
+      <div class="tab-content" id="tab-nutrisi">
+        <p style="font-size:0.82rem;color:var(--gray);margin-bottom:1rem">*Per sajian 400g (porsi Large)</p>
+        <table class="nutrition-table">
+          <thead>
+            <tr><th>Zat Gizi</th><th>Per Sajian</th><th>% AKG</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Energi</td><td>320 kkal</td><td>16%</td></tr>
+            <tr><td>Protein</td><td>12g</td><td>20%</td></tr>
+            <tr><td>Lemak Total</td><td>18g</td><td>27%</td></tr>
+            <tr><td>— Lemak Jenuh</td><td>3g</td><td>15%</td></tr>
+            <tr><td>— Lemak Tak Jenuh</td><td>14g</td><td>—</td></tr>
+            <tr><td>Karbohidrat</td><td>28g</td><td>11%</td></tr>
+            <tr><td>Serat Pangan</td><td>8g</td><td>32%</td></tr>
+            <tr><td>Gula</td><td>6g</td><td>—</td></tr>
+            <tr><td>Natrium</td><td>280mg</td><td>12%</td></tr>
+            <tr><td>Vitamin C</td><td>45mg</td><td>50%</td></tr>
+            <tr><td>Vitamin K</td><td>120µg</td><td>100%</td></tr>
+            <tr><td>Kalium</td><td>680mg</td><td>14%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ULASAN -->
+      <div class="tab-content" id="tab-ulasan">
+        <div class="review-summary">
+          <div class="review-score">
+            <div class="big">4.9</div>
+            <div class="stars-big">★★★★★</div>
+            <small>128 ulasan</small>
+          </div>
+          <div class="review-bars">
+            <div class="bar-row"><span>5★</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span>108</span></div>
+            <div class="bar-row"><span>4★</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span>15</span></div>
+            <div class="bar-row"><span>3★</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div><span>4</span></div>
+            <div class="bar-row"><span>2★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span>1</span></div>
+            <div class="bar-row"><span>1★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span>0</span></div>
+          </div>
+        </div>
+        <div class="review-list">
+          <div class="review-item">
+            <div class="review-header">
+              <div class="reviewer-avatar">😊</div>
+              <div>
+                <div class="reviewer-name">Siti Rahayu</div>
+                <div class="reviewer-date">12 Mei 2025</div>
+              </div>
+              <div class="review-stars" style="margin-left:auto">★★★★★</div>
+            </div>
+            <p class="review-text">Enak banget! Dressingnya creamy dan segar, sayurannya masih crispy waktu sampai. Sudah pesan 3x dan selalu puas. Recommended!</p>
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <div class="reviewer-avatar">🧑</div>
+              <div>
+                <div class="reviewer-name">Budi Santoso</div>
+                <div class="reviewer-date">8 Mei 2025</div>
+              </div>
+              <div class="review-stars" style="margin-left:auto">★★★★★</div>
+            </div>
+            <p class="review-text">Cocok banget buat meal prep. Porsi large cukup untuk makan siang dan malam. Harga sepadan dengan kualitasnya.</p>
+          </div>
+          <div class="review-item">
+            <div class="review-header">
+              <div class="reviewer-avatar">👩</div>
+              <div>
+                <div class="reviewer-name">Dewi Kusuma</div>
+                <div class="reviewer-date">3 Mei 2025</div>
+              </div>
+              <div class="review-stars" style="margin-left:auto">★★★★☆</div>
+            </div>
+            <p class="review-text">Saladnya fresh dan enak. Hanya packaging bisa lebih rapi lagi. Tapi rasa dan kualitas bahan sudah sangat bagus!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELATED PRODUCTS -->
+    <div class="related-section">
+      <h2>Produk Serupa</h2>
+      <div class="related-grid" id="relatedProducts">
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const products = [
+  {
+    id:1,
+    name:"Green Goddess Salad",
+    price:45000,
+    oldPrice:null,
+    img:"salad.jpg",
+    category:"Salad",
+    badge:"Terlaris",
+    rating:4.9,
+    review:128,
+    stock:24,
+    desc:"Campuran sayuran segar dengan dressing avokado.",
+    longDesc:"Green Goddess Salad merupakan salad sehat yang terdiri dari selada romaine, bayam baby, alpukat, tomat cherry, mentimun, dan dressing avocado creamy. Menu ini kaya akan serat, vitamin, dan lemak sehat sehingga cocok untuk menjaga pola makan seimbang."
+  },
+
+  {
+    id:2,
+    name:"Tropical Smoothie Bowl",
+    price:38000,
+    oldPrice:45000,
+    img:"smoothie.jpg",
+    category:"Smoothie",
+    badge:"Sale",
+    rating:4.8,
+    review:95,
+    stock:18,
+    desc:"Mangga, nanas, pisang dengan topping granola.",
+    longDesc:"Smoothie Bowl tropis yang dibuat dari perpaduan mangga, nanas, dan pisang segar. Diperkaya topping granola dan chia seed sehingga memberikan energi untuk memulai hari."
+  },
+
+  {
+    id:3,
+    name:"Protein Chicken Bowl",
+    price:52000,
+    oldPrice:null,
+    img:"chickenbowl.jpg",
+    category:"Bowl",
+    badge:"Baru",
+    rating:4.7,
+    review:74,
+    stock:15,
+    desc:"Ayam panggang, quinoa, sayuran kukus bergizi.",
+    longDesc:"Protein Chicken Bowl dibuat menggunakan dada ayam panggang rendah lemak, quinoa, brokoli, wortel, dan jagung manis. Sangat cocok bagi yang sedang menjaga massa otot."
+  },
+
+  {
+    id:4,
+    name:"Avocado Toast Box",
+    price:32000,
+    oldPrice:null,
+    img:"avocadotoast.jpg",
+    category:"Snack",
+    badge:"",
+    rating:4.6,
+    review:61,
+    stock:30,
+    desc:"Roti gandum dengan avokado dan telur rebus.",
+    longDesc:"Menu sarapan sehat yang terdiri dari roti gandum panggang, alpukat segar, telur rebus, dan taburan wijen."
+  },
+
+  {
+    id:5,
+    name:"Berry Blast Smoothie",
+    price:35000,
+    oldPrice:40000,
+    img:"berry.jpg",
+    category:"Smoothie",
+    badge:"Sale",
+    rating:4.9,
+    review:112,
+    stock:20,
+    desc:"Stroberi, blueberry, raspberry kaya antioksidan.",
+    longDesc:"Smoothie buah berry segar yang kaya antioksidan dan vitamin C untuk membantu menjaga daya tahan tubuh."
+  },
+
+  {
+    id:6,
+    name:"Rainbow Veggie Bowl",
+    price:48000,
+    oldPrice:null,
+    img:"rainbowveggie.jpg",
+    category:"Bowl",
+    badge:"Terlaris",
+    rating:4.8,
+    review:88,
+    stock:21,
+    desc:"Sayuran warna-warni dengan hummus dan falafel.",
+    longDesc:"Semangkuk sayuran segar dengan hummus homemade dan falafel panggang yang kaya serat dan protein nabati."
+  },
+
+  {
+    id:7,
+    name:"Granola & Yogurt",
+    price:28000,
+    oldPrice:null,
+    img:"granola.jpg",
+    category:"Snack",
+    badge:"Baru",
+    rating:4.5,
+    review:43,
+    stock:35,
+    desc:"Granola buatan sendiri dengan yogurt Greek.",
+    longDesc:"Perpaduan granola panggang homemade dengan Greek yogurt rendah lemak dan madu alami."
+  },
+
+  {
+    id:8,
+    name:"Vitamin C Booster",
+    price:120000,
+    oldPrice:150000,
+    img:"vitaminc.jpg",
+    category:"Suplemen",
+    badge:"Sale",
+    rating:4.9,
+    review:203,
+    stock:40,
+    desc:"Suplemen vitamin C alami dari ekstrak buah.",
+    longDesc:"Suplemen vitamin C premium yang membantu meningkatkan sistem imun dan melindungi tubuh dari radikal bebas."
+  },
+
+  {
+    id:9,
+    name:"Caesar Salad Premium",
+    price:42000,
+    oldPrice:null,
+    img:"saladchiken.jpg",
+    category:"Salad",
+    badge:"",
+    rating:4.7,
+    review:67,
+    stock:22,
+    desc:"Romaine, parmesan, crouton dengan saus caesar.",
+    longDesc:"Salad klasik dengan ayam panggang, romaine lettuce, parmesan cheese, dan saus caesar homemade."
+  },
+
+  {
+    id:10,
+    name:"Green Detox Juice",
+    price:30000,
+    oldPrice:null,
+    img:"greendetox.jpg",
+    category:"Smoothie",
+    badge:"",
+    rating:4.6,
+    review:55,
+    stock:28,
+    desc:"Seledri, mentimun, jahe, dan lemon segar.",
+    longDesc:"Minuman detox alami yang dibuat dari sayuran hijau dan buah segar tanpa tambahan gula."
+  },
+
+  {
+    id:11,
+    name:"Omega-3 Fish Bowl",
+    price:58000,
+    oldPrice:null,
+    img:"omega3.jpg",
+    category:"Bowl",
+    badge:"Terlaris",
+    rating:4.8,
+    review:91,
+    stock:16,
+    desc:"Salmon panggang dengan nasi merah dan edamame.",
+    longDesc:"Menu premium dengan salmon panggang kaya omega-3, nasi merah, brokoli, dan edamame."
+  },
+
+  {
+    id:12,
+    name:"Collagen Supplement",
+    price:185000,
+    oldPrice:220000,
+    img:"collagen.jpg",
+    category:"Suplemen",
+    badge:"Sale",
+    rating:4.7,
+    review:178,
+    stock:19,
+    desc:"Kolagen marin untuk kulit dan sendi sehat.",
+    longDesc:"Suplemen kolagen premium yang membantu menjaga elastisitas kulit serta kesehatan sendi."
+  }
+
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+
+  const id = parseInt(params.get("id"));
+
+  const product = products.find(p => p.id === id);
+
+  // Produk dengan kategori yang sama selain produk yang sedang dibuka
+  const relatedProducts = products
+      .filter(item =>
+          item.category === product.category &&
+          item.id !== product.id
+      )
+      .slice(0, 4);
+
+  const relatedContainer = document.getElementById("relatedProducts");
+
+  relatedProducts.forEach(item => {
+
+      relatedContainer.innerHTML += `
+          <div class="rel-card"
+              onclick="window.location.href='detail_produk.html?id=${item.id}'">
+
+              <div class="rel-img">
+                  <img src="images/${item.img}" alt="${item.name}">
+              </div>
+
+              <div class="rel-body">
+                  <div class="rel-name">${item.name}</div>
+
+                  <div class="rel-price">
+                      Rp ${item.price.toLocaleString("id-ID")}
+                  </div>
+              </div>
+
+          </div>
+      `;
+
+  });
+
+  document.getElementById("productName").textContent =
+  product.name;
+
+  document.getElementById("productPrice").textContent =
+  "Rp " + product.price.toLocaleString("id");
+
+  if(product.oldPrice){
+
+  document.getElementById("productOldPrice").textContent =
+  "Rp " + product.oldPrice.toLocaleString("id-ID");
+
+  document.getElementById("productDiscount").textContent =
+  product.discount;
+
+  }else{
+
+  document.getElementById("productOldPrice").style.display="none";
+
+  document.getElementById("productDiscount").style.display="none";
+
+  }
+
+  document.getElementById("productDesc").textContent =
+  product.desc;
+
+  document.getElementById("productCategory").textContent =
+  product.category;
+
+  document.getElementById("productImage").src =
+  "images/" + product.img;
+
+  document.getElementById("breadcrumbName").textContent =
+  product.name;
+
+  document.getElementById("productLongDesc").textContent =
+  product.longDesc;
+
+  document.getElementById("mainImg").src = 
+  "images/" + product.img;
+
+  document.getElementById("thumb1").src = "images/" + product.img;
+  document.getElementById("thumb2").src = "images/" + product.img;
+  document.getElementById("thumb3").src = "images/" + product.img;
+  document.getElementById("thumb4").src = "images/" + product.img;
+
+    let qty = 1;
+    let cartCount = 0;
+    let wished = false;
+
+    function changeQty(n) {
+      qty = Math.max(1, qty + n);
+      document.getElementById('qty').textContent = qty;
+    }
+
+    function addToCart() {
+      cartCount += qty;
+      document.getElementById('cartCount').textContent = cartCount;
+      showToast(`✅ ${qty}x ${product.name} ditambahkan!`);
+    }
+
+    function toggleWish() {
+      wished = !wished;
+      document.getElementById('wishBtn').textContent = wished ? '❤️' : '🤍';
+      showToast(wished ? '❤️ Ditambahkan ke wishlist!' : '🤍 Dihapus dari wishlist');
+    }
+
+    function switchTab(id, el) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      el.classList.add('active');
+    }
+
+    function selectPill(el) {
+      el.closest('.option-pills').querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+  </script>
+</body>
+</html>

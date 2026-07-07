@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard Saya — GreenBite</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a4a2e;
+    --green-mid: #2d7a4f;
+    --green-lime: #5cb85c;
+    --green-light: #e8f5e9;
+    --green-pale: #f0fdf4;
+    --accent: #f4a724;
+    --accent-light: #fff8e8;
+    --bg: #f8f9f4;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --text: #1a1a1a;
+    --text-light: #4b5563;
+    --red: #ef4444;
+    --red-light: #fef2f2;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); }
+  a { text-decoration:none; color:inherit; }
+
+  /* NAVBAR (sama gaya dgn katalog_produk.html) */
+  nav {
+    background:var(--white); padding:0 5%; display:flex; align-items:center; justify-content:space-between;
+    height:64px; position:sticky; top:0; z-index:100; box-shadow:0 1px 0 #e5e7eb;
+  }
+  .nav-logo { font-weight:800; font-size:1.4rem; color:var(--green-dark); }
+  .nav-logo span { color:var(--green-lime); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--gray); font-size:0.9rem; transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--green-dark); font-weight:600; }
+  .nav-right { display:flex; align-items:center; gap:1rem; }
+  .nav-avatar { width:38px; height:38px; border-radius:50%; background:var(--green-light); color:var(--green-dark); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; cursor:pointer; }
+  .btn-cart {
+    background:var(--green-dark); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:50px;
+    font-family:'Poppins',sans-serif; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; gap:0.4rem;
+  }
+  .btn-cart:hover { background:var(--green-mid); }
+  .cart-badge { background:var(--accent); color:#fff; border-radius:50%; width:18px; height:18px; font-size:0.7rem; display:flex; align-items:center; justify-content:center; font-weight:700; }
+
+  .wrap { max-width:1100px; margin:0 auto; padding:2.25rem 5% 4rem; }
+
+  /* GREETING / PROFILE BANNER */
+  .banner {
+    background:linear-gradient(135deg,var(--green-dark) 0%,var(--green-mid) 100%);
+    border-radius:24px; padding:2rem 2.25rem; color:#fff; display:flex; align-items:center;
+    justify-content:space-between; gap:1.5rem; flex-wrap:wrap; position:relative; overflow:hidden; margin-bottom:1.75rem;
+  }
+  .banner::before { content:''; position:absolute; width:280px; height:280px; border-radius:50%; border:50px solid rgba(255,255,255,0.06); right:-80px; top:-80px; pointer-events:none; }
+  .banner-left { display:flex; align-items:center; gap:1.1rem; z-index:1; }
+  .banner-avatar { width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:800; border:2px solid rgba(255,255,255,0.25); }
+  .banner-left h2 { font-size:1.3rem; font-weight:800; margin-bottom:0.2rem; }
+  .banner-left p { font-size:0.85rem; color:rgba(255,255,255,0.75); }
+  .banner-points { z-index:1; text-align:right; }
+  .banner-points strong { display:block; font-size:1.8rem; font-weight:900; color:#a8e063; }
+  .banner-points span { font-size:0.78rem; color:rgba(255,255,255,0.7); }
+
+  /* STAT ROW */
+  .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.75rem; }
+  .stat-card { background:var(--white); border-radius:18px; padding:1.25rem; box-shadow:0 2px 12px rgba(0,0,0,0.04); display:flex; align-items:center; gap:0.9rem; }
+  .stat-card .stat-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0; }
+  .stat-card .stat-value { font-size:1.2rem; font-weight:800; color:var(--green-dark); }
+  .stat-card .stat-label { font-size:0.76rem; color:var(--gray); }
+
+  .grid-2 { display:grid; grid-template-columns:1.7fr 1fr; gap:1.25rem; align-items:start; }
+
+  .panel { background:var(--white); border-radius:20px; padding:1.5rem; box-shadow:0 2px 12px rgba(0,0,0,0.04); margin-bottom:1.25rem; }
+  .panel-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+  .panel-head h3 { font-size:1.02rem; font-weight:700; color:var(--green-dark); }
+  .panel-head .link { font-size:0.8rem; color:var(--green-mid); font-weight:600; cursor:pointer; }
+
+  /* ORDER TRACKING CARD */
+  .track-card { border:1.5px solid var(--green-light); border-radius:16px; padding:1.1rem 1.25rem; margin-bottom:1rem; }
+  .track-card:last-child { margin-bottom:0; }
+  .track-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; }
+  .track-id { font-size:0.8rem; font-weight:700; color:var(--green-dark); }
+  .track-date { font-size:0.72rem; color:var(--gray); }
+  .status-chip { font-size:0.7rem; font-weight:700; padding:0.25rem 0.7rem; border-radius:50px; white-space:nowrap; }
+  .status-pending { background:var(--accent-light); color:var(--accent); }
+  .status-process { background:#e0f2fe; color:#0369a1; }
+  .status-delivered { background:var(--green-light); color:var(--green-mid); }
+
+  .track-steps { display:flex; align-items:center; margin-bottom:0.9rem; }
+  .track-step { flex:1; display:flex; flex-direction:column; align-items:center; position:relative; }
+  .track-step .dot { width:22px; height:22px; border-radius:50%; background:var(--green-light); color:var(--green-mid); display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; z-index:1; }
+  .track-step.done .dot { background:var(--green-lime); color:#fff; }
+  .track-step span.label { font-size:0.65rem; color:var(--gray); margin-top:0.4rem; text-align:center; }
+  .track-step:not(:last-child)::after { content:''; position:absolute; top:11px; left:50%; width:100%; height:2px; background:#eee; z-index:0; }
+  .track-step.done:not(:last-child)::after { background:var(--green-lime); }
+
+  .track-items { font-size:0.82rem; color:var(--text-light); margin-bottom:0.5rem; }
+  .track-footer { display:flex; align-items:center; justify-content:space-between; }
+  .track-price { font-weight:800; color:var(--green-dark); font-size:0.92rem; }
+  .btn-outline-sm {
+    border:1.5px solid var(--green-dark); color:var(--green-dark); background:none; padding:0.4rem 1rem;
+    border-radius:50px; font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:600; cursor:pointer; transition:all 0.2s;
+  }
+  .btn-outline-sm:hover { background:var(--green-dark); color:#fff; }
+
+  /* FAVORITES */
+  .fav-item { display:flex; align-items:center; gap:0.8rem; padding:0.7rem 0; border-bottom:1px solid #f1f1ee; }
+  .fav-item:last-child { border-bottom:none; padding-bottom:0; }
+  .fav-thumb { 
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    overflow:hidden;
+    flex-shrink:0; 
+    }
+  .fav-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    }
+  .fav-info { flex:1; min-width:0; }
+  .fav-name { font-size:0.85rem; font-weight:600; }
+  .fav-price { font-size:0.76rem; color:var(--green-mid); font-weight:700; }
+  .fav-add { width:32px; height:32px; border-radius:50%; border:none; background:var(--green-dark); color:#fff; cursor:pointer; font-size:0.9rem; flex-shrink:0; }
+  .fav-add:hover { background:var(--green-mid); }
+
+  /* NUTRITION RING */
+  .nutri-row { display:flex; align-items:center; gap:1.5rem; }
+  .nutri-ring {
+    width:96px; height:96px; border-radius:50%;
+    background:conic-gradient(var(--green-lime) 0% 68%, #eee 68% 100%);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative;
+  }
+  .nutri-ring::before { content:''; position:absolute; width:72px; height:72px; border-radius:50%; background:var(--white); }
+  .nutri-ring span { position:relative; font-size:1rem; font-weight:800; color:var(--green-dark); }
+  .nutri-legend { display:flex; flex-direction:column; gap:0.5rem; flex:1; }
+  .nutri-legend-row { display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; }
+  .nutri-legend-row .lbl { display:flex; align-items:center; gap:0.5rem; color:var(--text-light); }
+  .nutri-legend-row .sw { width:9px; height:9px; border-radius:3px; }
+  .nutri-legend-row .val { font-weight:700; color:var(--green-dark); }
+
+  /* PROMO */
+  .promo-card {
+    background:linear-gradient(135deg,var(--accent) 0%,#e8951a 100%); border-radius:18px; padding:1.4rem;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .promo-card::before { content:''; position:absolute; width:140px; height:140px; border-radius:50%; border:24px solid rgba(255,255,255,0.15); right:-50px; bottom:-50px; }
+  .promo-tag { font-size:0.7rem; font-weight:700; background:rgba(255,255,255,0.2); display:inline-block; padding:0.2rem 0.6rem; border-radius:50px; margin-bottom:0.6rem; }
+  .promo-card h4 { font-size:1.1rem; font-weight:800; margin-bottom:0.3rem; }
+  .promo-card p { font-size:0.8rem; opacity:0.9; margin-bottom:1rem; max-width:220px; }
+  .promo-btn { background:#fff; color:var(--accent); border:none; padding:0.5rem 1.1rem; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; cursor:pointer; }
+
+  @media (max-width:1000px){
+    .grid-2 { grid-template-columns:1fr; }
+    .stat-row { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:700px){
+    .nav-links { display:none; }
+    .banner { flex-direction:column; align-items:flex-start; }
+    .banner-points { text-align:left; }
+    .stat-row { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">GREEN<span>BITE</span></a>
+    <ul class="nav-links">
+      <li><a href="katalog_produk.html">Menu</a></li>
+      <li><a class="active" href="#">Dashboard Saya</a></li>
+      <li><a href="history_transaksi.html">Pesanan</a></li>
+      <li><a href="arsip_artikel.html">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-cart" onclick="window.location.href='keranjang.html'">
+        🛒 <span class="cart-badge">2</span>
+      </button>
+      <div class="nav-avatar">SR</div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- BANNER -->
+    <div class="banner">
+      <div class="banner-left">
+        <div class="banner-avatar">N</div>
+        <div>
+          <h2>Halo, Noreen 👋</h2>
+          <p>Semoga harimu sehat dan penuh energi!</p>
+        </div>
+      </div>
+      <div class="banner-points">
+        <strong>2.450</strong>
+        <span>Poin GreenBite</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--green-light)">🧾</div>
+        <div><div class="stat-value">24</div><div class="stat-label">Total pesanan</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--accent-light)">🔥</div>
+        <div><div class="stat-value">7 hari</div><div class="stat-label">Streak sehat</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#ede9fe">⭐</div>
+        <div><div class="stat-value">4.9</div><div class="stat-label">Rating diberikan</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#e0f2fe">❤️</div>
+        <div><div class="stat-value">8</div><div class="stat-label">Menu favorit</div></div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- ORDER TRACKING -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Pesanan Berlangsung</h3>
+            <span class="link">Riwayat lengkap →</span>
+          </div>
+
+          <div class="track-card">
+            <div class="track-top">
+              <div><div class="track-id">#GB-10293</div><div class="track-date">Hari ini, 09:42</div></div>
+              <span class="status-chip status-process">Sedang Diantar</span>
+            </div>
+            <div class="track-steps">
+              <div class="track-step done"><div class="dot">✓</div><span class="label">Dipesan</span></div>
+              <div class="track-step done"><div class="dot">✓</div><span class="label">Disiapkan</span></div>
+              <div class="track-step done"><div class="dot">🚚</div><span class="label">Diantar</span></div>
+              <div class="track-step"><div class="dot">🏠</div><span class="label">Tiba</span></div>
+            </div>
+            <div class="track-items">Green Goddess Salad ×1, Berry Blast Smoothie ×1</div>
+            <div class="track-footer">
+              <div class="track-price">Rp 80.000</div>
+              <button class="btn-outline-sm">Lacak Pesanan</button>
+            </div>
+          </div>
+
+          <div class="track-card">
+            <div class="track-top">
+              <div><div class="track-id">#GB-10277</div><div class="track-date">Kemarin, 18:10</div></div>
+              <span class="status-chip status-pending">Menunggu Konfirmasi</span>
+            </div>
+            <div class="track-steps">
+              <div class="track-step done"><div class="dot">✓</div><span class="label">Dipesan</span></div>
+              <div class="track-step"><div class="dot">⏳</div><span class="label">Disiapkan</span></div>
+              <div class="track-step"><div class="dot">🚚</div><span class="label">Diantar</span></div>
+              <div class="track-step"><div class="dot">🏠</div><span class="label">Tiba</span></div>
+            </div>
+            <div class="track-items">Omega-3 Fish Bowl ×2</div>
+            <div class="track-footer">
+              <div class="track-price">Rp 116.000</div>
+              <button class="btn-outline-sm">Lacak Pesanan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NUTRITION SUMMARY -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Ringkasan Nutrisi Minggu Ini</h3>
+            <span class="link">Detail →</span>
+          </div>
+          <div class="nutri-row">
+            <div class="nutri-ring"><span>68%</span></div>
+            <div class="nutri-legend">
+              <div class="nutri-legend-row"><div class="lbl"><span class="sw" style="background:var(--green-lime)"></span>Protein</div><div class="val">680g / 1.000g</div></div>
+              <div class="nutri-legend-row"><div class="lbl"><span class="sw" style="background:var(--accent)"></span>Karbohidrat</div><div class="val">1.240g / 1.800g</div></div>
+              <div class="nutri-legend-row"><div class="lbl"><span class="sw" style="background:#a78bfa"></span>Lemak</div><div class="val">320g / 500g</div></div>
+              <div class="nutri-legend-row"><div class="lbl"><span class="sw" style="background:#eee"></span>Total Kalori</div><div class="val">9.450 kkal</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Menu Favoritmu</h3>
+            <span class="link">Semua →</span>
+          </div>
+          <div class="fav-item">
+            <div class="fav-thumb"><img src="images/salad.jpg" alt="Green Goddess Salad"></div>
+            <div class="fav-info"><div class="fav-name">Green Goddess Salad</div><div class="fav-price">Rp 45.000</div></div>
+            <button class="fav-add">+</button>
+          </div>
+          <div class="fav-item">
+            <div class="fav-thumb"><img src="images/berry.jpg" alt="Green Goddess Salad"></div>
+            <div class="fav-info"><div class="fav-name">Berry Blast Smoothie</div><div class="fav-price">Rp 35.000</div></div>
+            <button class="fav-add">+</button>
+          </div>
+          <div class="fav-item">
+            <div class="fav-thumb"><img src="images/omega3.jpg" alt="Green Goddess Salad"></div>
+            <div class="fav-info"><div class="fav-name">Omega-3 Fish Bowl</div><div class="fav-price">Rp 58.000</div></div>
+            <button class="fav-add">+</button>
+          </div>
+          <div class="fav-item">
+            <div class="fav-thumb"><img src="images/rainbowveggie.jpg" alt="Green Goddess Salad"></div>
+            <div class="fav-info"><div class="fav-name">Rainbow Veggie Bowl</div><div class="fav-price">Rp 48.000</div></div>
+            <button class="fav-add">+</button>
+          </div>
+        </div>
+
+        <div class="promo-card">
+          <span class="promo-tag">🎉 Khusus Untukmu</span>
+          <h4>Diskon 20%</h4>
+          <p>Pakai kode SEHAT20 untuk pesanan berikutnya, berlaku sampai akhir bulan.</p>
+          <button class="promo-btn" onclick="window.location.href='katalog_produk.html'">Pesan Sekarang</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

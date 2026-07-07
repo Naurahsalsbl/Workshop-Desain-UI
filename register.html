@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Daftar — GreenBite</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a4a2e;
+    --green-mid: #2d7a4f;
+    --green-lime: #5cb85c;
+    --green-light: #e8f5e9;
+    --green-pale: #f0fdf4;
+    --accent: #f4a724;
+    --bg: #f8f9f4;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --text: #1a1a1a;
+    --text-light: #4b5563;
+    --red: #ef4444;
+    --border: #e5e7eb;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text);
+    min-height:100vh; display:flex; align-items:stretch;
+  }
+
+  /* LEFT PANEL */
+  .left {
+    width:42%; background:linear-gradient(160deg,var(--green-dark) 0%,var(--green-mid) 100%);
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:2.5rem 3rem; position:relative; overflow:hidden;
+  }
+  .left::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; border:60px solid rgba(255,255,255,0.05); right:-140px; top:-100px; }
+  .left::after  { content:''; position:absolute; width:260px; height:260px; border-radius:50%; border:40px solid rgba(255,255,255,0.05); left:-80px; bottom:-60px; }
+  .left-logo { font-weight:800; font-size:1.5rem; color:#fff; letter-spacing:-0.02em; z-index:1; }
+  .left-logo em { color:var(--green-lime); font-style:normal; }
+
+  .steps-wrap { z-index:1; }
+  .steps-title { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.5); font-weight:700; margin-bottom:1.5rem; }
+  .step-item { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.5rem; }
+  .step-num {
+    width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.1); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; flex-shrink:0;
+  }
+  .step-num.done { background:var(--green-lime); color:var(--green-dark); }
+  .step-info h4 { font-size:0.88rem; font-weight:700; color:#fff; margin-bottom:0.15rem; }
+  .step-info p  { font-size:0.78rem; color:rgba(255,255,255,0.6); line-height:1.5; }
+
+  .left-quote {
+    z-index:1; border-left:3px solid rgba(255,255,255,0.2); padding-left:1rem;
+    font-size:0.82rem; color:rgba(255,255,255,0.7); line-height:1.65; font-style:italic;
+  }
+  .left-quote strong { color:#a8e063; font-style:normal; }
+
+  /* RIGHT */
+  .right { flex:1; display:flex; align-items:center; justify-content:center; padding:2rem 2rem; overflow-y:auto; }
+  .form-box { width:100%; max-width:460px; }
+  .form-box h1 { font-size:1.6rem; font-weight:800; color:var(--green-dark); letter-spacing:-0.02em; margin-bottom:0.4rem; }
+  .form-box .sub { font-size:0.88rem; color:var(--gray); margin-bottom:1.75rem; }
+  .form-box .sub a { color:var(--green-mid); font-weight:600; }
+
+  /* SOCIAL */
+  .social-row { display:flex; gap:0.75rem; margin-bottom:1.4rem; }
+  .social-btn {
+    flex:1; border:1.5px solid var(--border); background:var(--white); border-radius:12px;
+    padding:0.65rem 0.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;
+    font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; color:var(--text);
+    cursor:pointer; transition:all 0.2s;
+  }
+  .social-btn:hover { border-color:var(--green-lime); background:var(--green-pale); }
+
+  .divider { display:flex; align-items:center; gap:0.75rem; margin-bottom:1.4rem; }
+  .divider span { font-size:0.78rem; color:var(--gray); white-space:nowrap; }
+  .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* GRID 2 COL */
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; }
+
+  /* FIELD */
+  .field { margin-bottom:1rem; }
+  .field label { display:block; font-size:0.82rem; font-weight:600; color:var(--text); margin-bottom:0.4rem; }
+  .input-wrap { position:relative; }
+  .input-wrap .ico { position:absolute; left:1rem; top:50%; transform:translateY(-50%); font-size:1rem; pointer-events:none; }
+  .input-wrap input, .input-wrap select {
+    width:100%; padding:0.72rem 1rem 0.72rem 2.7rem; border:1.5px solid var(--border);
+    border-radius:12px; font-family:'Poppins',sans-serif; font-size:0.88rem; color:var(--text);
+    background:var(--white); outline:none; transition:border-color 0.2s, box-shadow 0.2s; appearance:none;
+  }
+  .input-wrap input::placeholder { color:#aaa; }
+  .input-wrap input:focus, .input-wrap select:focus { border-color:var(--green-lime); box-shadow:0 0 0 3px rgba(92,184,92,0.12); }
+  .input-wrap input.error, .input-wrap select.error { border-color:var(--red); }
+  .input-wrap .toggle-pw { position:absolute; right:1rem; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:1rem; color:var(--gray); }
+  .field-error { font-size:0.74rem; color:var(--red); margin-top:0.3rem; display:none; }
+  .field-error.show { display:block; }
+
+  /* PASSWORD STRENGTH */
+  .pw-strength { margin-top:0.5rem; }
+  .pw-bars { display:flex; gap:4px; margin-bottom:0.3rem; }
+  .pw-bar { flex:1; height:4px; border-radius:4px; background:#eee; transition:background 0.3s; }
+  .pw-label { font-size:0.72rem; color:var(--gray); }
+
+  /* TERMS */
+  .terms-row { display:flex; align-items:flex-start; gap:0.6rem; margin:1.1rem 0 1.4rem; }
+  .terms-row input[type=checkbox] { accent-color:var(--green-dark); width:15px; height:15px; margin-top:2px; flex-shrink:0; }
+  .terms-row label { font-size:0.82rem; color:var(--text-light); line-height:1.5; cursor:pointer; }
+  .terms-row a { color:var(--green-mid); font-weight:600; }
+
+  .btn-submit {
+    width:100%; background:var(--green-dark); color:#fff; border:none;
+    padding:0.88rem; border-radius:12px; font-family:'Poppins',sans-serif;
+    font-size:0.95rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; justify-content:center; gap:0.5rem;
+  }
+  .btn-submit:hover { background:var(--green-mid); transform:translateY(-1px); box-shadow:0 8px 24px rgba(26,74,46,0.2); }
+  .btn-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .login-link { text-align:center; margin-top:1.25rem; font-size:0.85rem; color:var(--gray); }
+  .login-link a { color:var(--green-mid); font-weight:700; }
+
+  /* TOAST */
+  .toast {
+    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(120px);
+    background:var(--green-dark); color:#fff; padding:0.8rem 1.75rem; border-radius:50px;
+    font-size:0.88rem; font-weight:600; z-index:999; transition:transform 0.3s ease;
+    box-shadow:0 8px 24px rgba(0,0,0,0.2); white-space:nowrap;
+  }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:860px) { .left { display:none; } }
+  @media (max-width:500px) { .field-row { grid-template-columns:1fr; } .right { padding:1.5rem 1.25rem; } }
+</style>
+</head>
+<body>
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="left-logo">Green<em>Bite</em></div>
+
+    <div class="steps-wrap">
+      <div class="steps-title">Daftar dalam 3 langkah mudah</div>
+      <div class="step-item">
+        <div class="step-num done">✓</div>
+        <div class="step-info">
+          <h4>Isi data dirimu</h4>
+          <p>Nama, email, dan password untuk membuat akun.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-info">
+          <h4>Verifikasi email</h4>
+          <p>Cek inbox-mu untuk konfirmasi akun.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-info">
+          <h4>Mulai pesan!</h4>
+          <p>Nikmati 120+ menu sehat dikirim ke pintumu.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-quote">
+      "Sejak daftar GreenBite, berat badan saya turun 5 kg dalam sebulan. Masakannya enak banget!"<br/>
+      <strong>— Siti Rahayu, Mahasiswi Surabaya</strong>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="form-box">
+      <h1>Buat akun baru 🌿</h1>
+      <p class="sub">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+
+      <div class="social-row">
+        <button class="social-btn"><span>🌐</span> Daftar via Google</button>
+        <button class="social-btn"><span>📘</span> Daftar via Facebook</button>
+      </div>
+      <div class="divider"><span>atau daftar dengan email</span></div>
+
+      <!-- NAME ROW -->
+      <div class="field-row">
+        <div class="field">
+          <label>Nama Depan</label>
+          <div class="input-wrap">
+            <span class="ico">👤</span>
+            <input type="text" id="fname" placeholder="Siti"/>
+          </div>
+          <div class="field-error" id="err-fname">Wajib diisi.</div>
+        </div>
+        <div class="field">
+          <label>Nama Belakang</label>
+          <div class="input-wrap">
+            <span class="ico">👤</span>
+            <input type="text" id="lname" placeholder="Rahayu"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label>Email</label>
+        <div class="input-wrap">
+          <span class="ico">✉️</span>
+          <input type="email" id="email" placeholder="nama@email.com"/>
+        </div>
+        <div class="field-error" id="err-email">Email tidak valid.</div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="field">
+        <label>Nomor HP</label>
+        <div class="input-wrap">
+          <span class="ico">📱</span>
+          <input type="tel" id="phone" placeholder="08xxxxxxxxxx"/>
+        </div>
+        <div class="field-error" id="err-phone">Nomor HP tidak valid.</div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="ico">🔒</span>
+          <input type="password" id="password" placeholder="Min. 8 karakter" oninput="checkStrength(this.value)"/>
+          <button class="toggle-pw" type="button" onclick="togglePw('password',this)">👁️</button>
+        </div>
+        <div class="pw-strength">
+          <div class="pw-bars">
+            <div class="pw-bar" id="bar1"></div>
+            <div class="pw-bar" id="bar2"></div>
+            <div class="pw-bar" id="bar3"></div>
+            <div class="pw-bar" id="bar4"></div>
+          </div>
+          <span class="pw-label" id="pw-label">Masukkan password</span>
+        </div>
+        <div class="field-error" id="err-password">Password minimal 8 karakter.</div>
+      </div>
+
+      <!-- CONFIRM PASSWORD -->
+      <div class="field">
+        <label>Konfirmasi Password</label>
+        <div class="input-wrap">
+          <span class="ico">🔒</span>
+          <input type="password" id="confirm" placeholder="Ulangi password"/>
+          <button class="toggle-pw" type="button" onclick="togglePw('confirm',this)">👁️</button>
+        </div>
+        <div class="field-error" id="err-confirm">Password tidak cocok.</div>
+      </div>
+
+      <!-- TERMS -->
+      <div class="terms-row">
+        <input type="checkbox" id="terms"/>
+        <label for="terms">Saya setuju dengan <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> GreenBite.</label>
+      </div>
+
+      <button class="btn-submit" id="regBtn" onclick="handleRegister()">Buat Akun →</button>
+
+      <p class="login-link">Sudah punya akun? <a href="login.html">Masuk sekarang</a></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  function togglePw(id, btn) {
+    const el = document.getElementById(id);
+    const hidden = el.type === 'password';
+    el.type = hidden ? 'text' : 'password';
+    btn.textContent = hidden ? '🙈' : '👁️';
+  }
+
+  function checkStrength(val) {
+    const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3'), document.getElementById('bar4')];
+    const label = document.getElementById('pw-label');
+    bars.forEach(b => b.style.background = '#eee');
+
+    let score = 0;
+    if (val.length >= 8)              score++;
+    if (/[A-Z]/.test(val))            score++;
+    if (/[0-9]/.test(val))            score++;
+    if (/[^A-Za-z0-9]/.test(val))     score++;
+
+    const colors = ['#ef4444','#f4a724','#a8e063','var(--green-lime)'];
+    const labels = ['Lemah','Cukup','Kuat','Sangat Kuat'];
+    for (let i = 0; i < score; i++) bars[i].style.background = colors[score-1];
+    label.textContent = val.length === 0 ? 'Masukkan password' : labels[score-1] || 'Lemah';
+    label.style.color = val.length === 0 ? 'var(--gray)' : colors[score-1];
+  }
+
+  function showToast(msg, ok=true) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = ok ? 'var(--green-dark)' : '#ef4444';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function setError(id, inputId, show) {
+    document.getElementById(id).classList.toggle('show', show);
+    document.getElementById(inputId).classList.toggle('error', show);
+  }
+
+  function handleRegister() {
+    const fname   = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const phone   = document.getElementById('phone').value.trim();
+    const pw      = document.getElementById('password').value;
+    const confirm = document.getElementById('confirm').value;
+    const terms   = document.getElementById('terms').checked;
+    let valid = true;
+
+    // reset semua error
+    ['err-fname','err-email','err-phone','err-password','err-confirm'].forEach(id => document.getElementById(id).classList.remove('show'));
+    ['fname','email','phone','password','confirm'].forEach(id => document.getElementById(id).classList.remove('error'));
+
+    if (!fname)                                         { setError('err-fname','fname',true); valid=false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('err-email','email',true); valid=false; }
+    if (!phone || !/^08\d{8,11}$/.test(phone))          { setError('err-phone','phone',true); valid=false; }
+    if (pw.length < 8)                                  { setError('err-password','password',true); valid=false; }
+    if (pw !== confirm)                                 { setError('err-confirm','confirm',true); valid=false; }
+    if (!terms) { showToast('❌ Centang syarat & ketentuan dulu ya!', false); valid=false; }
+    if (!valid) return;
+
+    const btn = document.getElementById('regBtn');
+    btn.disabled = true; btn.textContent = 'Mendaftarkan...';
+
+    setTimeout(() => {
+      btn.disabled = false; btn.textContent = 'Buat Akun →';
+      showToast('✅ Akun berhasil dibuat! Mengarahkan...');
+      setTimeout(() => window.location.href = 'dashboard_user.html', 1400);
+    }, 1600);
+  }
+</script>
+</body>
+</html>
