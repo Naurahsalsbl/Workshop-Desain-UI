@@ -76,7 +76,21 @@
     .trx-id-cell { font-weight: 700; color: var(--green-dark); font-size: 0.85rem; }
     .trx-date-cell { font-size: 0.75rem; color: var(--gray); }
     .cust-cell { display: flex; align-items: center; gap: 0.6rem; }
-    .cust-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .cust-avatar{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:#f3f4f6;
+    }
+
+    .cust-avatar img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
     .cust-name { font-weight: 600; color: var(--text); font-size: 0.85rem; }
 
     .status-select {
@@ -113,7 +127,21 @@
     .detail-row .value { font-weight: 600; color: var(--text); }
     .detail-items { margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
     .detail-item { display: flex; gap: 0.65rem; align-items: center; }
-    .detail-item-img { width: 40px; height: 40px; border-radius: 10px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .detail-item-img{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#f3f4f6;
+    flex-shrink:0;
+    }
+
+    .detail-item-img img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
     .detail-item-info { flex: 1; font-size: 0.82rem; }
     .detail-item-price { font-size: 0.82rem; font-weight: 700; color: var(--green-dark); }
     .detail-divider { border: none; border-top: 1px dashed #e5e7eb; margin: 1rem 0; }
@@ -140,7 +168,7 @@
     <div class="sidebar-logo"><span>GREEN<em>BITE</em></span><small>Admin Panel</small></div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item" href="dashboard_admin.html"><span class="icon">📊</span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
       <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
       <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
@@ -266,14 +294,14 @@
 
   <script>
     let transactions = [
-      { id:"GB-2025-0124", cust:"Andy Pratama", emoji:"🧑", date:"18 Mei 2025", items:[{name:"Green Goddess Salad", qty:2, price:90000, emoji:"🥗"},{name:"Berry Blast Smoothie", qty:1, price:35000, emoji:"🍓"}], total:125000, status:"Selesai" },
-      { id:"GB-2025-0118", cust:"Budi Santoso", emoji:"👴", date:"15 Mei 2025", items:[{name:"Protein Chicken Bowl", qty:1, price:52000, emoji:"🍲"},{name:"Green Detox Juice", qty:2, price:60000, emoji:"🥤"}], total:112000, status:"Dikirim" },
-      { id:"GB-2025-0109", cust:"Siti Rahayu", emoji:"👩", date:"10 Mei 2025", items:[{name:"Vitamin C Booster", qty:1, price:120000, emoji:"💊"}], total:120000, status:"Diproses" },
-      { id:"GB-2025-0102", cust:"Dewi Kusuma", emoji:"👩‍🦰", date:"8 Mei 2025", items:[{name:"Avocado Toast Box", qty:3, price:96000, emoji:"🥑"},{name:"Caesar Salad Premium", qty:1, price:42000, emoji:"🥬"}], total:138000, status:"Menunggu" },
-      { id:"GB-2025-0098", cust:"Fajar Ramadhan", emoji:"🧑‍🦱", date:"5 Mei 2025", items:[{name:"Rainbow Veggie Bowl", qty:1, price:48000, emoji:"🌈"}], total:48000, status:"Dibatalkan" },
-      { id:"GB-2025-0087", cust:"Maya Anggraini", emoji:"👩‍🦱", date:"2 Mei 2025", items:[{name:"Rainbow Veggie Bowl", qty:2, price:96000, emoji:"🌈"}], total:96000, status:"Selesai" },
-      { id:"GB-2025-0071", cust:"Eko Prasetyo", emoji:"🧔", date:"25 Apr 2025", items:[{name:"Omega-3 Fish Bowl", qty:1, price:58000, emoji:"🐟"},{name:"Collagen Supplement", qty:1, price:185000, emoji:"✨"}], total:243000, status:"Selesai" },
-      { id:"GB-2025-0065", cust:"Andy Pratama", emoji:"🧑", date:"20 Apr 2025", items:[{name:"Tropical Smoothie Bowl", qty:1, price:38000, emoji:"🍹"}], total:38000, status:"Diproses" },
+      { id:"GB-2025-0124", cust:"Andy Pratama", img:"andy.jpg", date:"18 Mei 2025", items:[{name:"Green Goddess Salad", qty:2, price:90000, img:"salad.jpg"},{name:"Berry Blast Smoothie", qty:1, price:35000, img:"berry.jpg"}], total:125000, status:"Selesai" },
+      { id:"GB-2025-0118", cust:"Budi Santoso", img:"budi.jpg", date:"15 Mei 2025", items:[{name:"Protein Chicken Bowl", qty:1, price:52000, img:"chickenbowl.jpg"},{name:"Green Detox Juice", qty:2, price:60000, img:"greendetox.jpg"}], total:112000, status:"Dikirim" },
+      { id:"GB-2025-0109", cust:"Siti Rahayu", img:"siti.jpg", date:"10 Mei 2025", items:[{name:"Vitamin C Booster", qty:1, price:120000, img:"vitaminc.jpg"}], total:120000, status:"Diproses" },
+      { id:"GB-2025-0102", cust:"Dewi Kusuma", img:"dewi.jpg", date:"8 Mei 2025", items:[{name:"Avocado Toast Box", qty:3, price:96000, img:"avocadotoast.jpg"},{name:"Caesar Salad Premium", qty:1, price:42000, img:"saladchiken.jpg"}], total:138000, status:"Menunggu" },
+      { id:"GB-2025-0098", cust:"Fajar Ramadhan", img:"fajar.jpg", date:"5 Mei 2025", items:[{name:"Rainbow Veggie Bowl", qty:1, price:48000, img:"rainbowveggie.jpg"}], total:48000, status:"Dibatalkan" },
+      { id:"GB-2025-0087", cust:"Maya Anggraini", img:"maya.jpg", date:"2 Mei 2025", items:[{name:"Rainbow Veggie Bowl", qty:2, price:96000, img:"rainbowveggie.jpg"}], total:96000, status:"Selesai" },
+      { id:"GB-2025-0071", cust:"Eko Prasetyo", img:"eko.jpg", date:"25 Apr 2025", items:[{name:"Omega-3 Fish Bowl", qty:1, price:58000, img:"omega3.jpg"},{name:"Collagen Supplement", qty:1, price:185000, img:"collagen.jpg"}], total:243000, status:"Selesai" },
+      { id:"GB-2025-0065", cust:"Andy Pratama", img:"andy.jpg", date:"20 Apr 2025", items:[{name:"Tropical Smoothie Bowl", qty:1, price:38000, img:"smoothie.jpg"}], total:38000, status:"Diproses" },
     ];
 
     const statusClass = {
@@ -294,7 +322,7 @@
           <td><div class="trx-id-cell">#${t.id}</div></td>
           <td>
             <div class="cust-cell">
-              <div class="cust-avatar">${t.emoji}</div>
+              <div class="cust-avatar"><img src="images/${t.img}" alt="${t.cust}"></div>
               <div class="cust-name">${t.cust}</div>
             </div>
           </td>
@@ -347,7 +375,7 @@
       document.getElementById('dTotal').textContent = 'Rp ' + t.total.toLocaleString('id');
       document.getElementById('dItems').innerHTML = t.items.map(i => `
         <div class="detail-item">
-          <div class="detail-item-img">${i.emoji}</div>
+          <div class="detail-item-img"><img src="images/${i.img}" alt="${i.name}"></div>
           <div class="detail-item-info">${i.name} <span style="color:var(--gray)">x${i.qty}</span></div>
           <div class="detail-item-price">Rp ${i.price.toLocaleString('id')}</div>
         </div>

@@ -94,7 +94,20 @@
     .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem; }
     .article-card { background: var(--white); border-radius: 16px; overflow: hidden; transition: box-shadow 0.2s; position: relative; }
     .article-card:hover { box-shadow: 0 8px 24px rgba(26,74,46,0.1); }
-    .article-thumb { height: 130px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; position: relative; }
+    .article-thumb{
+    position:relative;
+    height:180px;
+    border-radius:16px;
+    overflow:hidden;
+    background:#f5f5f5;
+    }
+
+    .article-thumb img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
     .article-status { position: absolute; top: 10px; left: 10px; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; }
     .status-published { background: #dcfce7; color: #16a34a; }
     .status-draft { background: #fef9c3; color: #ca8a04; }
@@ -338,14 +351,12 @@
 
   <script>
     let articles = [
-      { id:"ART-001", title:"5 Superfood yang Wajib Ada di Piringmu Setiap Hari", cat:"Nutrisi", emoji:"🥑", author:"dr. Ayu Pratiwi", date:"15 Mei 2025", views:3200, status:"Published" },
-      { id:"ART-002", title:"Sarapan Sehat dalam 10 Menit untuk Orang Sibuk", cat:"Resep", emoji:"🍳", author:"Chef Rima", date:"12 Mei 2025", views:12400, status:"Published" },
-      { id:"ART-003", title:"Manfaat Intermittent Fasting untuk Tubuh", cat:"Gaya Hidup", emoji:"⏰", author:"dr. Hendra", date:"8 Mei 2025", views:5600, status:"Published" },
-      { id:"ART-004", title:"Protein Nabati vs Hewani, Mana Lebih Baik?", cat:"Nutrisi", emoji:"🌱", author:"Ahli Gizi Lina", date:"5 Mei 2025", views:4100, status:"Published" },
-      { id:"ART-005", title:"5 Gerakan Olahraga Ringan di Rumah", cat:"Olahraga", emoji:"🏃", author:"Trainer Doni", date:"2 Mei 2025", views:2900, status:"Draft" },
-      { id:"ART-006", title:"Kenali Tanda-tanda Kekurangan Vitamin D", cat:"Nutrisi", emoji:"☀️", author:"dr. Ayu", date:"28 Apr 2025", views:7100, status:"Published" },
-      { id:"ART-007", title:"Smoothie Bowl untuk Pemula: Resep Mudah", cat:"Resep", emoji:"🍓", author:"Chef Rima", date:"25 Apr 2025", views:3300, status:"Draft" },
-      { id:"ART-008", title:"Hubungan Pola Makan dan Kesehatan Mental", cat:"Gaya Hidup", emoji:"🧘", author:"Psikolog Rina", date:"20 Apr 2025", views:8200, status:"Published" },
+      { id:"ART-001", title:"5 Superfood yang Wajib Ada di Piringmu Setiap Hari", cat:"Nutrisi", img:"superfood.jpg", author:"dr. Ayu Pratiwi", date:"15 Mei 2025", views:3200, status:"Published" },
+      { id:"ART-002", title:"Manfaat Intermittent Fasting untuk Tubuh", cat:"Gaya Hidup", img:"intermitten.jpg", author:"dr. Hendra", date:"8 Mei 2025", views:5600, status:"Published" },
+      { id:"ART-003", title:"Protein Nabati vs Hewani, Mana Lebih Baik?", cat:"Nutrisi", img:"protein.jpg", author:"Ahli Gizi Lina", date:"5 Mei 2025", views:4100, status:"Published" },
+      { id:"ART-004", title:"5 Gerakan Olahraga Ringan di Rumah", cat:"Olahraga", img:"yoga.jpg", author:"Trainer Doni", date:"2 Mei 2025", views:2900, status:"Draft" },
+      { id:"ART-005", title:"Kenali Tanda-tanda Kekurangan Vitamin D", cat:"Nutrisi", img:"vitamind.jpg", author:"dr. Ayu", date:"28 Apr 2025", views:7100, status:"Published" },
+      { id:"ART-006", title:"Smoothie Bowl untuk Pemula: Resep Mudah", cat:"Resep", img:"bowl.jpg", author:"Chef Rima", date:"25 Apr 2025", views:3300, status:"Draft" },
     ];
 
     let editingId = null;
@@ -358,7 +369,7 @@
         <div class="article-card" id="article-${a.id}">
           <div class="article-thumb">
             <span class="article-status ${a.status === 'Published' ? 'status-published' : 'status-draft'}">${a.status}</span>
-            ${a.emoji}
+            <img src="images/${a.img}" alt="${a.title}">
           </div>
           <div class="article-body">
             <div class="article-cat">${a.cat}</div>

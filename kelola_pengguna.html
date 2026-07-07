@@ -73,8 +73,21 @@
     tbody td { padding: 0.85rem 1rem; font-size: 0.85rem; vertical-align: middle; }
 
     .user-cell { display: flex; align-items: center; gap: 0.75rem; }
-    .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
-    .user-name { font-weight: 600; color: var(--green-dark); font-size: 0.88rem; }
+    .user-avatar{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+    background:#f3f4f6;
+    }
+
+    .user-avatar img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
     .user-email { font-size: 0.74rem; color: var(--gray); }
 
     .role-badge { padding: 0.2rem 0.65rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; }
@@ -136,7 +149,7 @@
     <div class="sidebar-logo"><span>GREEN<em>BITE</em></span><small>Admin Panel</small></div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item" href="dashboard_admin.html"><span class="icon">📊</span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
       <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
       <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
@@ -260,14 +273,14 @@
 
   <script>
     let users = [
-      { id:"USR-001", name:"Andy Pratama", email:"andy.p@email.com", emoji:"🧑", role:"Customer", joined:"12 Jan 2025", trx:18, spent:1850000, status:"Aktif" },
-      { id:"USR-002", name:"Budi Santoso", email:"budi.santoso@email.com", emoji:"👴", role:"Customer", joined:"3 Feb 2025", trx:5, spent:420000, status:"Aktif" },
-      { id:"USR-003", name:"Siti Rahayu", email:"siti.rahayu@email.com", emoji:"👩", role:"Customer", joined:"20 Feb 2025", trx:32, spent:3200000, status:"Aktif" },
-      { id:"USR-004", name:"Dewi Kusuma", email:"dewi.k@email.com", emoji:"👩‍🦰", role:"Customer", joined:"5 Mar 2025", trx:9, spent:780000, status:"Aktif" },
-      { id:"USR-005", name:"Rina Wijaya", email:"rina.admin@greenbite.com", emoji:"👩‍💼", role:"Admin", joined:"1 Jan 2025", trx:0, spent:0, status:"Aktif" },
-      { id:"USR-006", name:"Fajar Ramadhan", email:"fajar.r@email.com", emoji:"🧑‍🦱", role:"Customer", joined:"15 Mar 2025", trx:3, spent:210000, status:"Nonaktif" },
-      { id:"USR-007", name:"Maya Anggraini", email:"maya.a@email.com", emoji:"👩‍🦱", role:"Customer", joined:"22 Mar 2025", trx:14, spent:1620000, status:"Aktif" },
-      { id:"USR-008", name:"Eko Prasetyo", email:"eko.p@email.com", emoji:"🧔", role:"Customer", joined:"2 Apr 2025", trx:1, spent:45000, status:"Nonaktif" },
+      { id:"USR-001", name:"Andy Pratama", email:"andy.p@email.com", img:"andy.jpg", role:"Customer", joined:"12 Jan 2025", trx:18, spent:1850000, status:"Aktif" },
+      { id:"USR-002", name:"Budi Santoso", email:"budi.santoso@email.com", img:"budi.jpg", role:"Customer", joined:"3 Feb 2025", trx:5, spent:420000, status:"Aktif" },
+      { id:"USR-003", name:"Siti Rahayu", email:"siti.rahayu@email.com", img:"siti.jpg", role:"Customer", joined:"20 Feb 2025", trx:32, spent:3200000, status:"Aktif" },
+      { id:"USR-004", name:"Dewi Kusuma", email:"dewi.k@email.com", img:"dewi.jpg", role:"Customer", joined:"5 Mar 2025", trx:9, spent:780000, status:"Aktif" },
+      { id:"USR-005", name:"Rina Wijaya", email:"rina.admin@greenbite.com", img:"user1.jpg", role:"Admin", joined:"1 Jan 2025", trx:0, spent:0, status:"Aktif" },
+      { id:"USR-006", name:"Fajar Ramadhan", email:"fajar.r@email.com", img:"fajar.jpg", role:"Customer", joined:"15 Mar 2025", trx:3, spent:210000, status:"Nonaktif" },
+      { id:"USR-007", name:"Maya Anggraini", email:"maya.a@email.com", img:"maya.jpg", role:"Customer", joined:"22 Mar 2025", trx:14, spent:1620000, status:"Aktif" },
+      { id:"USR-008", name:"Eko Prasetyo", email:"eko.p@email.com", img:"eko.jpg", role:"Customer", joined:"2 Apr 2025", trx:1, spent:45000, status:"Nonaktif" },
     ];
 
     function renderTable(list) {
@@ -279,7 +292,7 @@
         <tr id="row-${u.id}">
           <td>
             <div class="user-cell">
-              <div class="user-avatar">${u.emoji}</div>
+              <div class="user-avatar"><img src="images/${u.img}" alt="${u.name}"></div>
               <div>
                 <div class="user-name">${u.name}</div>
                 <div class="user-email">${u.email}</div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kelola Produk — GreenBite Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --green-dark: #1a4a2e;
@@ -20,7 +20,7 @@
       --sidebar: 240px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
 
     /* SIDEBAR */
     .sidebar {
@@ -32,7 +32,7 @@
       padding: 1.5rem 1.25rem 1rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .sidebar-logo span { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; }
+    .sidebar-logo span { font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 800; }
     .sidebar-logo span em { color: #a8e063; font-style: normal; }
     .sidebar-logo small { display: block; font-size: 0.7rem; opacity: 0.6; margin-top: 0.2rem; }
     .sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
@@ -62,7 +62,7 @@
       border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 50;
     }
     .topbar-left { display: flex; align-items: center; gap: 1rem; }
-    .topbar-left h1 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+    .topbar-left h1 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
     .breadcrumb-top { font-size: 0.78rem; color: var(--gray); }
     .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
     .notif-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #e5e7eb; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative; }
@@ -76,7 +76,7 @@
     .stat-card { background: var(--white); border-radius: 16px; padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
     .stat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
     .stat-info { flex: 1; }
-    .stat-val { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
+    .stat-val { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
     .stat-label { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; }
     .stat-badge { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 50px; font-weight: 600; }
     .badge-green { background: #dcfce7; color: #16a34a; }
@@ -93,18 +93,18 @@
       background: var(--bg); border: 1.5px solid #e5e7eb; border-radius: 10px;
       padding: 0.5rem 0.9rem; flex: 1; min-width: 200px;
     }
-    .search-box input { border: none; background: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; width: 100%; }
-    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
+    .search-box input { border: none; background: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; width: 100%; }
+    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
     .btn-primary {
       background: var(--green-dark); color: #fff; border: none;
-      padding: 0.55rem 1.2rem; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      padding: 0.55rem 1.2rem; border-radius: 10px; font-family: 'Poppins', sans-serif;
       font-size: 0.88rem; font-weight: 600; cursor: pointer; display: flex;
       align-items: center; gap: 0.4rem; transition: background 0.2s; white-space: nowrap;
     }
     .btn-primary:hover { background: var(--green-mid); }
     .btn-secondary {
       background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark);
-      padding: 0.5rem 1rem; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Poppins', sans-serif;
       font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
     }
     .btn-secondary:hover { background: var(--green-light); }
@@ -112,7 +112,7 @@
     /* TABLE */
     .table-card { background: var(--white); border-radius: 16px; overflow: hidden; }
     .table-header { padding: 1rem 1.25rem; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; }
-    .table-title { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--green-dark); }
+    .table-title { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--green-dark); }
     .table-count { font-size: 0.8rem; color: var(--gray); }
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
@@ -126,7 +126,21 @@
 
     /* PRODUCT CELL */
     .product-cell { display: flex; align-items: center; gap: 0.75rem; }
-    .product-thumb { width: 44px; height: 44px; border-radius: 10px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .product-thumb{
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:#f3f4f6;
+    }
+
+    .product-thumb img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
     .product-name { font-weight: 600; color: var(--green-dark); font-size: 0.88rem; }
     .product-id { font-size: 0.72rem; color: var(--gray); }
 
@@ -166,7 +180,7 @@
     .modal-overlay.open { display: flex; }
     .modal { background: var(--white); border-radius: 20px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
     .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; }
-    .modal-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--green-dark); }
+    .modal-title { font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--green-dark); }
     .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bg); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
     .modal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -174,7 +188,7 @@
     .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--green-dark); }
     .form-group input, .form-group select, .form-group textarea {
       border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.6rem 0.9rem;
-      font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none;
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; outline: none;
       transition: border-color 0.2s; background: var(--bg);
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-lime); background: #fff; }
@@ -214,13 +228,13 @@
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item" href="dashboard_admin.html"><span class="icon">📊</span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
-      <a class="nav-item active" href="kelola-produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
-      <a class="nav-item" href="kelola-artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
+      <a class="nav-item active" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
+      <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
       <div class="nav-section">Kelola Pengguna</div>
-      <a class="nav-item" href="kelola-pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
-      <a class="nav-item" href="kelola-transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
+      <a class="nav-item" href="kelola_pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
+      <a class="nav-item" href="kelola_transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
       <div class="nav-section">Lainnya</div>
       <a class="nav-item" href="index.html"><span class="icon">🌐</span> Lihat Website</a>
       <a class="nav-item" href="#"><span class="icon">⚙️</span> Pengaturan</a>
@@ -425,18 +439,18 @@
 
   <script>
     let products = [
-      { id:"PRD-001", name:"Green Goddess Salad", cat:"Salad", emoji:"🥗", price:45000, oldPrice:55000, stock:24, sold:128, status:"Aktif" },
-      { id:"PRD-002", name:"Tropical Smoothie Bowl", cat:"Smoothie", emoji:"🍹", price:38000, oldPrice:45000, stock:18, sold:95, status:"Aktif" },
-      { id:"PRD-003", name:"Protein Chicken Bowl", cat:"Bowl", emoji:"🍲", price:52000, oldPrice:null, stock:31, sold:74, status:"Aktif" },
-      { id:"PRD-004", name:"Avocado Toast Box", cat:"Snack", emoji:"🥑", price:32000, oldPrice:null, stock:5, sold:61, status:"Stok Menipis" },
-      { id:"PRD-005", name:"Berry Blast Smoothie", cat:"Smoothie", emoji:"🍓", price:35000, oldPrice:40000, stock:22, sold:112, status:"Aktif" },
-      { id:"PRD-006", name:"Rainbow Veggie Bowl", cat:"Bowl", emoji:"🌈", price:48000, oldPrice:null, stock:15, sold:88, status:"Aktif" },
-      { id:"PRD-007", name:"Granola & Yogurt", cat:"Snack", emoji:"🥣", price:28000, oldPrice:null, stock:3, sold:43, status:"Stok Menipis" },
-      { id:"PRD-008", name:"Vitamin C Booster", cat:"Suplemen", emoji:"💊", price:120000, oldPrice:150000, stock:40, sold:203, status:"Aktif" },
-      { id:"PRD-009", name:"Caesar Salad Premium", cat:"Salad", emoji:"🥬", price:42000, oldPrice:null, stock:19, sold:67, status:"Aktif" },
-      { id:"PRD-010", name:"Green Detox Juice", cat:"Smoothie", emoji:"🥤", price:30000, oldPrice:null, stock:0, sold:55, status:"Nonaktif" },
-      { id:"PRD-011", name:"Omega-3 Fish Bowl", cat:"Bowl", emoji:"🐟", price:58000, oldPrice:null, stock:12, sold:91, status:"Aktif" },
-      { id:"PRD-012", name:"Collagen Supplement", cat:"Suplemen", emoji:"✨", price:185000, oldPrice:220000, stock:28, sold:178, status:"Aktif" },
+      { id:"PRD-001", name:"Green Goddess Salad", cat:"Salad", img:"salad.jpg", price:45000, oldPrice:55000, stock:24, sold:128, status:"Aktif" },
+      { id:"PRD-002", name:"Tropical Smoothie Bowl", cat:"Smoothie", img:"smoothie.jpg", price:38000, oldPrice:45000, stock:18, sold:95, status:"Aktif" },
+      { id:"PRD-003", name:"Protein Chicken Bowl", cat:"Bowl", img:"chickenbowl.jpg", price:52000, oldPrice:null, stock:31, sold:74, status:"Aktif" },
+      { id:"PRD-004", name:"Avocado Toast Box", cat:"Snack", img:"avocadotoast.jpg", price:32000, oldPrice:null, stock:5, sold:61, status:"Stok Menipis" },
+      { id:"PRD-005", name:"Berry Blast Smoothie", cat:"Smoothie", img:"berry.jpg", price:35000, oldPrice:40000, stock:22, sold:112, status:"Aktif" },
+      { id:"PRD-006", name:"Rainbow Veggie Bowl", cat:"Bowl", img:"rainbowveggie.jpg", price:48000, oldPrice:null, stock:15, sold:88, status:"Aktif" },
+      { id:"PRD-007", name:"Granola & Yogurt", cat:"Snack", img:"granola.jpg", price:28000, oldPrice:null, stock:3, sold:43, status:"Stok Menipis" },
+      { id:"PRD-008", name:"Vitamin C Booster", cat:"Suplemen", img:"vitaminc.jpg", price:120000, oldPrice:150000, stock:40, sold:203, status:"Aktif" },
+      { id:"PRD-009", name:"Caesar Salad Premium", cat:"Salad", img:"saladchiken.jpg", price:42000, oldPrice:null, stock:19, sold:67, status:"Aktif" },
+      { id:"PRD-010", name:"Green Detox Juice", cat:"Smoothie", img:"greendetox.jpg", price:30000, oldPrice:null, stock:0, sold:55, status:"Nonaktif" },
+      { id:"PRD-011", name:"Omega-3 Fish Bowl", cat:"Bowl", img:"omega3.jpg", price:58000, oldPrice:null, stock:12, sold:91, status:"Aktif" },
+      { id:"PRD-012", name:"Collagen Supplement", cat:"Suplemen", img:"collagen.jpg", price:185000, oldPrice:220000, stock:28, sold:178, status:"Aktif" },
     ];
 
     let editingId = null;
@@ -455,7 +469,7 @@
             <td><input type="checkbox" class="row-check" onchange="checkBulk()"/></td>
             <td>
               <div class="product-cell">
-                <div class="product-thumb">${p.emoji}</div>
+                <div class="product-thumb"><img src="images/${p.img}" alt="${p.name}"></div>
                 <div>
                   <div class="product-name">${p.name}</div>
                   <div class="product-id">${p.id}</div>
