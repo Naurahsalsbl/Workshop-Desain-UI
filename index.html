@@ -313,9 +313,16 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; flex-wrap: wrap; gap: 0.5rem; }
 
     /* MOBILE */
-    @media (max-width: 900px) {
-      .nav-links, .nav-cta { display: none; }
-      .hamburger { display: flex; }
+    @media (max-width:900px){
+        .nav-links,
+        .nav-cta{
+            display:none;
+        }
+        .hamburger{
+            display:flex;
+            z-index:1000;
+        }
+    
       .hero { grid-template-columns: 1fr; padding: 90px 6% 50px; text-align: center; gap: 2.5rem; }
       .hero-desc { margin: 0 auto 2rem; }
       .hero-actions { justify-content: center; }
@@ -335,6 +342,76 @@
       .footer-top { grid-template-columns: 1fr; }
       .features-visual { grid-template-columns: 1fr; }
       .feat-card:nth-child(2), .feat-card:nth-child(4) { margin-top: 0; }
+    }
+    /* ===== MOBILE DRAWER ===== */
+
+    .mobile-overlay{
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.35);
+        opacity:0;
+        visibility:hidden;
+        transition:.3s;
+        z-index:998;
+    }
+
+    .mobile-overlay.show{
+        opacity:1;
+        visibility:visible;
+    }
+
+    .mobile-menu{
+        position:fixed;
+        top:0;
+        right:-320px;
+        width:300px;
+        height:100vh;
+        background:#fff;
+        padding:90px 28px 30px;
+        display:flex;
+        flex-direction:column;
+        transition:.35s ease;
+        z-index:999;
+        box-shadow:-15px 0 40px rgba(0,0,0,.15);
+    }
+
+    .mobile-menu.show{
+        right:0;
+    }
+
+    .mobile-menu a{
+        text-decoration:none;
+        color:#444;
+        padding:16px 0;
+        font-weight:600;
+        border-bottom:1px solid #eee;
+    }
+
+    .mobile-divider{
+        height:1px;
+        background:#e5e7eb;
+        margin:22px 0;
+    }
+
+    .mobile-login{
+        height:46px;
+        border:2px solid #1a4a2e;
+        border-radius:30px;
+        background:#fff;
+        color:#1a4a2e;
+        font-weight:700;
+        cursor:pointer;
+        margin-bottom:14px;
+    }
+
+    .mobile-order{
+        height:48px;
+        border:none;
+        border-radius:30px;
+        background:#1a4a2e;
+        color:white;
+        font-weight:700;
+        cursor:pointer;
     }
   </style>
 </head>
@@ -357,6 +434,28 @@
       <span></span><span></span><span></span>
     </button>
   </header>
+  <div class="mobile-overlay" id="overlay"></div>
+
+  <div class="mobile-menu" id="mobileMenu">
+
+      <a href="#features">🌿 Fitur</a>
+      <a href="#menu">🥗 Menu</a>
+      <a href="#how">📖 Cara Kerja</a>
+      <a href="arsip_artikel.html">📰 Blog</a>
+
+      <div class="mobile-divider"></div>
+
+      <button class="mobile-login"
+          onclick="window.location.href='login.html'">
+          Masuk
+      </button>
+
+      <button class="mobile-order"
+          onclick="window.location.href='katalog_produk.html'">
+          Mulai Pesan
+      </button>
+
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -645,6 +744,24 @@
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
+    function closeMenu(){
+        mobileMenu.classList.remove("show");
+        overlay.classList.remove("show");
+        hamburger.classList.remove("open");
+    }
+    hamburger.addEventListener("click",()=>{
+        hamburger.classList.toggle("open");
+        mobileMenu.classList.toggle("show");
+        overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click",closeMenu);
+    document.querySelectorAll(".mobile-menu a").forEach(link=>{
+        link.addEventListener("click",closeMenu);
     });
   </script>
 </body>

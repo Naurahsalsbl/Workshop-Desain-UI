@@ -97,10 +97,20 @@
     .trx-body { padding: 1.1rem 1.25rem; }
     .trx-items { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
     .trx-item { display: flex; align-items: center; gap: 0.75rem; }
-    .trx-item-img {
-      width: 50px; height: 50px; border-radius: 12px;
-      background: var(--green-light); display: flex; align-items: center;
-      justify-content: center; font-size: 1.6rem; flex-shrink: 0;
+    .trx-item-img{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    overflow:hidden;
+    background:#f3f4f6;
+    flex-shrink:0;
+    }
+
+    .trx-item-img img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
     }
     .trx-item-info { flex: 1; }
     .trx-item-name { font-size: 0.88rem; font-weight: 600; color: var(--green-dark); }
@@ -213,46 +223,46 @@
       {
         id: "GB-2025-0124", date: "18 Mei 2025, 14:30", status: "Selesai",
         items: [
-          { name: "Green Goddess Salad", qty: 2, price: 90000, emoji: "🥗" },
-          { name: "Berry Blast Smoothie", qty: 1, price: 35000, emoji: "🍓" },
+          { name: "Green Goddess Salad", qty: 2, price: 90000, img:"salad.jpg" },
+          { name: "Berry Blast Smoothie", qty: 1, price: 35000, img:"berry.jpg" },
         ],
         total: 125000, step: 4
       },
       {
         id: "GB-2025-0118", date: "15 Mei 2025, 09:12", status: "Dikirim",
         items: [
-          { name: "Protein Chicken Bowl", qty: 1, price: 52000, emoji: "🍲" },
-          { name: "Green Detox Juice", qty: 2, price: 60000, emoji: "🥤" },
+          { name: "Protein Chicken Bowl", qty: 1, price: 52000, img:"chickenbowl.jpg" },
+          { name: "Green Detox Juice", qty: 2, price: 60000, img:"greendetox.jpg" },
         ],
         total: 112000, step: 3
       },
       {
         id: "GB-2025-0109", date: "10 Mei 2025, 18:45", status: "Diproses",
         items: [
-          { name: "Vitamin C Booster", qty: 1, price: 120000, emoji: "💊" },
+          { name: "Vitamin C Booster", qty: 1, price: 120000, img:"vitaminc.jpg" },
         ],
         total: 120000, step: 2
       },
       {
         id: "GB-2025-0102", date: "8 Mei 2025, 11:20", status: "Menunggu",
         items: [
-          { name: "Avocado Toast Box", qty: 3, price: 96000, emoji: "🥑" },
-          { name: "Caesar Salad Premium", qty: 1, price: 42000, emoji: "🥬" },
+          { name: "Avocado Toast Box", qty: 3, price: 96000, img:"avocadotoast.jpg" },
+          { name: "Caesar Salad Premium", qty: 1, price: 42000, img:"saladchiken.jpg" },
         ],
         total: 138000, step: 1
       },
       {
         id: "GB-2025-0087", date: "2 Mei 2025, 16:00", status: "Selesai",
         items: [
-          { name: "Rainbow Veggie Bowl", qty: 2, price: 96000, emoji: "🌈" },
+          { name: "Rainbow Veggie Bowl", qty: 2, price: 96000, img:"rainbowveggie.jpg" },
         ],
         total: 96000, step: 4
       },
       {
         id: "GB-2025-0071", date: "25 Apr 2025, 13:15", status: "Selesai",
         items: [
-          { name: "Omega-3 Fish Bowl", qty: 1, price: 58000, emoji: "🐟" },
-          { name: "Collagen Supplement", qty: 1, price: 185000, emoji: "✨" },
+          { name: "Omega-3 Fish Bowl", qty: 1, price: 58000, img:"omega3.jpg" },
+          { name: "Collagen Supplement", qty: 1, price: 185000, img:"collagen.jpg" },
         ],
         total: 243000, step: 4
       },
@@ -312,7 +322,7 @@
             <div class="trx-items">
               ${itemsToShow.map(item => `
                 <div class="trx-item">
-                  <div class="trx-item-img">${item.emoji}</div>
+                  <div class="trx-item-img"><img src="images/${item.img}" alt="${item.name}"></div>
                   <div class="trx-item-info">
                     <div class="trx-item-name">${item.name}</div>
                     <div class="trx-item-qty">x${item.qty}</div>
