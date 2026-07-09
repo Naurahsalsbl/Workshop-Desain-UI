@@ -286,6 +286,20 @@
     @media (max-width: 420px) {
       .article-grid { grid-template-columns: 1fr; }
     }
+  
+    /* Hamburger mobile nav (auto-added) */
+    .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 210; }
+    .hamburger-btn span { width: 22px; height: 2px; background: var(--green-dark, #1a4a2e); border-radius: 2px; transition: 0.3s; display: block; }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .hamburger-btn { display: flex; }
+      .nav-links.mobile-open {
+        display: flex !important; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 6%; gap: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 150;
+      }
+    }
   </style>
 </head>
 <body>
@@ -299,6 +313,9 @@
       <li><a href="#">Tentang</a></li>
       <li><a href="arsip_artikel.html" class="active">Blog</a></li>
     </ul>
+    <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <button class="btn-mulai" onclick="window.location.href='katalog_produk.html'">Mulai</button>
   </nav>
 
@@ -327,7 +344,8 @@
   <main class="main">
 
     <!-- FEATURED -->
-    <div class="featured-card" onclick="window.location.href='detail_artikel.html'">
+  <div class="featured-card"
+     onclick="window.open('https://greenbitehealty.wordpress.com/2026/07/09/5-superfood-yang-wajib-ada-di-piringmu-setiap-hari/', '_blank')">
       <div class="featured-img">
         <img src="images/superfood.jpg" alt="Salad">
       </div>
@@ -343,7 +361,9 @@
           <span class="meta-dot"></span>
           <span>⏱ 5 menit</span>
         </div>
-        <a class="btn-read" href="http://localhost/greenbite-cms/?p=13">Baca Artikel →</a>
+          <a class="btn-read"
+            href="https://greenbitehealty.wordpress.com/2026/07/09/5-superfood-yang-wajib-ada-di-piringmu-setiap-hari/" target="_blank">
+            Baca Artikel →</a>
       </div>
     </div>
 
@@ -354,38 +374,6 @@
     </div>
 
     <div class="article-grid" id="articleGrid"></div>
-
-    <!-- ARTIKEL POPULER -->
-    <div class="section-head">
-      <h2>Paling Banyak Dibaca</h2>
-    </div>
-
-    <div class="popular-list">
-      <div class="popular-item" onclick="window.location.href='detail_artikel.html'">
-        <div class="popular-num">01</div>
-        <div class="popular-img"></div>
-        <div class="popular-info">
-          <div class="popular-title">Sarapan Sehat dalam 10 Menit: Panduan untuk Orang Sibuk</div>
-          <div class="popular-meta">👤 Chef Rima · ⏱ 4 menit · 12.4k dibaca</div>
-        </div>
-      </div>
-      <div class="popular-item" onclick="window.location.href='detail_artikel.html'">
-        <div class="popular-num">02</div>
-        <div class="popular-img">💧</div>
-        <div class="popular-info">
-          <div class="popular-title">Berapa Banyak Air yang Harus Kamu Minum Setiap Hari?</div>
-          <div class="popular-meta">👤 dr. Budi · ⏱ 3 menit · 9.8k dibaca</div>
-        </div>
-      </div>
-      <div class="popular-item" onclick="window.location.href='detail_artikel.html'">
-        <div class="popular-num">03</div>
-        <div class="popular-img">🧘</div>
-        <div class="popular-info">
-          <div class="popular-title">Hubungan Antara Pola Makan dan Kesehatan Mental</div>
-          <div class="popular-meta">👤 Psikolog Rina · ⏱ 6 menit · 8.2k dibaca</div>
-        </div>
-      </div>
-    </div>
 
     <div class="pagination">
       <button class="page-btn">‹</button>
@@ -399,12 +387,12 @@
 
   <script>
     const articles = [
-      { title:"Panduan Meal Prep Minggu Ini", cat:"resep", image:"images/mealprep.jpg", bg:"#e8f5e9", author:"Chef Sari", date:"10 Mei 2025", read:"4 menit", excerpt:"Hemat waktu dan makan lebih sehat dengan persiapan masakan seminggu sekali." },
-      { title:"Manfaat Intermittent Fasting untuk Tubuh", cat:"gaya hidup", image:"images/intermitten.jpg", bg:"#fff3e0", author:"dr. Hendra", date:"8 Mei 2025", read:"6 menit", excerpt:"Puasa berkala bukan hanya soal diet, tapi juga cara tubuh melakukan detoks alami." },
-      { title:"Protein Nabati vs Hewani, Mana Lebih Baik?", cat:"nutrisi", image:"images/protein.jpg", bg:"#f3e5f5", author:"Ahli Gizi Lina", date:"5 Mei 2025", read:"5 menit", excerpt:"Perdebatan soal sumber protein terbaik akhirnya terjawab dengan data ilmiah terkini." },
-      { title:"5 Gerakan Olahraga Ringan di Rumah", cat:"olahraga", image:"images/yoga.jpg", bg:"#e3f2fd", author:"Trainer Doni", date:"2 Mei 2025", read:"3 menit", excerpt:"Tidak perlu gym! Gerakan sederhana ini cukup untuk menjaga tubuh tetap aktif." },
-      { title:"Kenali Tanda-tanda Kekurangan Vitamin D", cat:"nutrisi", image:"images/vitamind.jpg", bg:"#fffde7", author:"dr. Ayu", date:"28 Apr 2025", read:"4 menit", excerpt:"Banyak orang tidak sadar kekurangan vitamin D meski tinggal di negara tropis." },
-      { title:"Smoothie Bowl untuk Pemula: Resep Mudah", cat:"resep", image:"images/bowl.jpg", bg:"#fce4ec", author:"Chef Rima", date:"25 Apr 2025", read:"3 menit", excerpt:"Bikin smoothie bowl yang instagramable dan bergizi hanya butuh 5 bahan sederhana." },
+      { title:"Panduan Meal Prep Minggu Ini", cat:"resep", image:"images/mealprep.jpg", bg:"#e8f5e9", author:"Chef Sari", date:"10 Mei 2025", read:"4 menit", excerpt:"Hemat waktu dan makan lebih sehat dengan persiapan masakan seminggu sekali.", link:"https://greenbitehealty.wordpress.com/2026/07/09/panduan-meal-prep-minggu-ini-cara-mudah-menyiapkan-makanan-sehat/" },
+      { title:"Manfaat Intermittent Fasting untuk Tubuh", cat:"gaya hidup", image:"images/intermitten.jpg", bg:"#fff3e0", author:"dr. Hendra", date:"8 Mei 2025", read:"6 menit", excerpt:"Puasa berkala bukan hanya soal diet, tapi juga cara tubuh melakukan detoks alami.", link:"https://greenbitehealty.wordpress.com/2026/07/09/manfaat-intermittent-fasting-untuk-tubuh/" },
+      { title:"Protein Nabati vs Hewani, Mana Lebih Baik?", cat:"nutrisi", image:"images/protein.jpg", bg:"#f3e5f5", author:"Ahli Gizi Lina", date:"5 Mei 2025", read:"5 menit", excerpt:"Perdebatan soal sumber protein terbaik akhirnya terjawab dengan data ilmiah terkini.", link:"https://greenbitehealty.wordpress.com/2026/07/09/protein-nabati-vs-protein-hewani-mana-yang-lebih-baik/" },
+      { title:"5 Gerakan Olahraga Ringan di Rumah", cat:"olahraga", image:"images/yoga.jpg", bg:"#e3f2fd", author:"Trainer Doni", date:"2 Mei 2025", read:"3 menit", excerpt:"Tidak perlu gym! Gerakan sederhana ini cukup untuk menjaga tubuh tetap aktif.", link:"https://greenbitehealty.wordpress.com/2026/07/09/5-gerakan-olahraga-ringan-yang-bisa-dilakukan-di-rumah/" },
+      { title:"Kenali Tanda-tanda Kekurangan Vitamin D", cat:"nutrisi", image:"images/vitamind.jpg", bg:"#fffde7", author:"dr. Ayu", date:"28 Apr 2025", read:"4 menit", excerpt:"Banyak orang tidak sadar kekurangan vitamin D meski tinggal di negara tropis.", link:"https://greenbitehealty.wordpress.com/2026/07/09/kenali-tanda-tanda-kekurangan-vitamin-d/" },
+      { title:"Smoothie Bowl untuk Pemula: Resep Mudah", cat:"resep", image:"images/bowl.jpg", bg:"#fce4ec", author:"Chef Rima", date:"25 Apr 2025", read:"3 menit", excerpt:"Bikin smoothie bowl yang instagramable dan bergizi hanya butuh 5 bahan sederhana.", link:"https://greenbitehealty.wordpress.com/2026/07/09/smoothie-bowl-untuk-pemula-resep-mudah-dan-bergizi/" },
     ];
 
     let activeTag = 'semua';
@@ -414,7 +402,7 @@
 
     function renderArticles(list) {
       document.getElementById('articleGrid').innerHTML = list.map((a, i) => `
-        <div class="article-card" onclick="window.location.href='detail_artikel.html'">
+        <div class="article-card" onclick="window.open('${a.link}','_blank')">
           <div class="article-img" style="background:${a.bg}"><img src="${a.image}" alt="${a.title}"></div>
           <div class="article-body">
             <div class="article-cat">${a.cat}</div>
@@ -450,6 +438,13 @@
     }
 
     renderArticles(articles);
+  </script>
+
+  <script>
+    function toggleMobileNav() {
+      document.querySelector('.nav-links').classList.toggle('mobile-open');
+      document.getElementById('hamburgerBtn').classList.toggle('open');
+    }
   </script>
 </body>
 </html>

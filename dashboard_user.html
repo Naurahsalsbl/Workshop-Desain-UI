@@ -162,7 +162,21 @@
     .banner-points { text-align:left; }
     .stat-row { grid-template-columns:1fr 1fr; }
   }
-</style>
+
+    /* Hamburger mobile nav (auto-added) */
+    .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 210; }
+    .hamburger-btn span { width: 22px; height: 2px; background: var(--green-dark, #1a4a2e); border-radius: 2px; transition: 0.3s; display: block; }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 700px) {
+      .hamburger-btn { display: flex; }
+      .nav-links.mobile-open {
+        display: flex !important; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 6%; gap: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 150;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -175,11 +189,22 @@
       <li><a href="history_transaksi.html">Pesanan</a></li>
       <li><a href="arsip_artikel.html">Blog</a></li>
     </ul>
-    <div class="nav-right">
+      <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    <div class="nav-right" style="position:relative;">
       <button class="btn-cart" onclick="window.location.href='keranjang.html'">
         🛒 
       </button>
-      <div class="nav-avatar">N</div>
+      <div class="nav-avatar" onclick="toggleUserMenu()">N</div>
+      <div id="userMenu" style="display:none; position:absolute; top:52px; right:0; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12); min-width:170px; overflow:hidden; z-index:200;">
+        <div style="padding:0.9rem 1rem 0.6rem; border-bottom:1px solid #f1f1ee;">
+          <div style="font-size:0.85rem; font-weight:700; color:var(--green-dark);">Noreen Aulia</div>
+          <div style="font-size:0.72rem; color:var(--gray);">noreen@email.com</div>
+        </div>
+        <a href="#" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--text);">⚙️ Pengaturan Akun</a>
+        <a href="index.html" onclick="return confirm('Yakin ingin keluar?')" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--red, #ef4444); border-top:1px solid #f1f1ee;">🚪 Keluar</a>
+      </div>
     </div>
   </nav>
 
@@ -188,9 +213,9 @@
     <!-- BANNER -->
     <div class="banner">
       <div class="banner-left">
-        <div class="banner-avatar">N</div>
+        <div class="banner-avatar">U</div>
         <div>
-          <h2>Halo, Noreen 👋</h2>
+          <h2>Halo, User 👋</h2>
           <p>Semoga harimu sehat dan penuh energi!</p>
         </div>
       </div>
@@ -325,5 +350,22 @@
 
   </div>
 
+
+  <script>
+    function toggleMobileNav() {
+      document.querySelector('.nav-links').classList.toggle('mobile-open');
+      document.getElementById('hamburgerBtn').classList.toggle('open');
+    }
+
+    function toggleUserMenu() {
+      const m = document.getElementById('userMenu');
+      m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('userMenu');
+      const avatar = document.querySelector('.nav-avatar');
+      if (menu && !menu.contains(e.target) && e.target !== avatar) menu.style.display = 'none';
+    });
+  </script>
 </body>
 </html>

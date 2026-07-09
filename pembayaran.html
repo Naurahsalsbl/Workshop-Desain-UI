@@ -212,6 +212,20 @@
     @media (max-width: 400px) {
       .payment-options { grid-template-columns: 1fr; }
     }
+  
+    /* Hamburger mobile nav (auto-added) */
+    .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 210; }
+    .hamburger-btn span { width: 22px; height: 2px; background: var(--green-dark, #1a4a2e); border-radius: 2px; transition: 0.3s; display: block; }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger-btn { display: flex; }
+      .nav-links.mobile-open {
+        display: flex !important; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
+        background: #fff; padding: 1.25rem 6%; gap: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 150;
+      }
+    }
   </style>
 </head>
 <body>
@@ -225,6 +239,9 @@
       <li><a href="#">Tentang</a></li>
       <li><a href="arsip_artikel.html">Blog</a></li>
     </ul>
+      <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
   </nav>
 
   <!-- BREADCRUMB -->
@@ -468,6 +485,13 @@
       const orderNum = 'GB-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000);
       document.getElementById('orderNumber').textContent = 'No. Pesanan: #' + orderNum;
       document.getElementById('successModal').classList.add('open');
+    }
+  </script>
+
+  <script>
+    function toggleMobileNav() {
+      document.querySelector('.nav-links').classList.toggle('mobile-open');
+      document.getElementById('hamburgerBtn').classList.toggle('open');
     }
   </script>
 </body>

@@ -389,7 +389,7 @@
 
     setTimeout(() => {
       btn.disabled = false; btn.textContent = 'Masuk →';
-      const target = selectedRole === 'admin' ? 'dashboard.html' : 'dashboard_user.html';
+      const target = selectedRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_user.html';
       showToast(selectedRole === 'admin' ? '✅ Berhasil masuk sebagai Admin! Mengarahkan...' : '✅ Berhasil masuk! Mengarahkan...');
       setTimeout(() => window.location.href = target, 1200);
     }, 1400);
