@@ -142,10 +142,18 @@
     .summary-title { font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1.25rem; }
     .order-items { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
     .order-item { display: flex; gap: 0.75rem; align-items: center; }
-    .order-item-img {
-      width: 46px; height: 46px; border-radius: 10px;
-      background: var(--green-light); display: flex; align-items: center;
-      justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+    .order-item-img{
+    width:60px;
+    height:60px;
+    border-radius:12px;
+    overflow:hidden;
+    flex-shrink:0;
+    }
+    .order-item-img img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
     }
     .order-item-info { flex: 1; }
     .order-item-name { font-size: 0.85rem; font-weight: 600; color: var(--green-dark); }
@@ -393,7 +401,7 @@
         <div class="summary-title">🧾 Ringkasan Pesanan</div>
         <div class="order-items">
           <div class="order-item">
-            <div class="order-item-img">🥗</div>
+            <div class="order-item-img"><img src="images/salad.jpg" alt="Green Goddess Salad"></div>
             <div class="order-item-info">
               <div class="order-item-name">Green Goddess Salad</div>
               <div class="order-item-variant">Large · Tanpa Topping · x2</div>
@@ -401,7 +409,7 @@
             <div class="order-item-price">Rp 90.000</div>
           </div>
           <div class="order-item">
-            <div class="order-item-img">🍓</div>
+            <div class="order-item-img"><img src="images/berry.jpg" alt="Berry Blast Smoothie"></div>
             <div class="order-item-info">
               <div class="order-item-name">Berry Blast Smoothie</div>
               <div class="order-item-variant">Regular · x1</div>
@@ -409,7 +417,7 @@
             <div class="order-item-price">Rp 35.000</div>
           </div>
           <div class="order-item">
-            <div class="order-item-img">🍲</div>
+            <div class="order-item-img"><img src="images/chickenbowl.jpg" alt="Protein Chicken Bowl"></div>
             <div class="order-item-info">
               <div class="order-item-name">Protein Chicken Bowl</div>
               <div class="order-item-variant">Regular · x1</div>
