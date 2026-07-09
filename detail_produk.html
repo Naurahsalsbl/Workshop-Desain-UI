@@ -260,19 +260,162 @@
     @media (max-width: 900px) {
       .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .product-top { grid-template-columns: 1fr; gap: 1.5rem; }
-      .main-img { font-size: 7rem; }
-      .highlights { grid-template-columns: repeat(3, 1fr); }
-      .review-summary { flex-direction: column; gap: 1rem; }
-      .main { padding: 0 4% 2rem; }
+    @media (max-width:768px){
+
+      nav{
+        padding:0 16px;
+        height:64px;
+      }
+
+      .nav-logo{
+        font-size:1.1rem;
+      }
+
+      .btn-cart{
+        padding:.5rem .9rem;
+        font-size:.8rem;
+      }
+
+      .breadcrumb{
+        padding:14px 16px;
+        font-size:.78rem;
+      }
+
+      .main{
+        padding:0 16px 30px;
+      }
+
+      .product-top{
+        display:flex;
+        flex-direction:column;
+        gap:24px;
+      }
+
+      .gallery{
+        width:100%;
+      }
+
+      .main-img{
+        border-radius:22px;
+        aspect-ratio:1;
+      }
+
+      .thumb-row{
+        justify-content:center;
+        gap:10px;
+      }
+
+      .thumb{
+        width:70px;
+        height:70px;
+      }
+
+      .product-name{
+        font-size:1.6rem;
+      }
+
+      .price-main{
+        font-size:1.8rem;
+      }
+
+      .price-row{
+        flex-wrap:wrap;
+      }
+
+      .product-desc{
+        font-size:.9rem;
+      }
+
+      .option-pills{
+        gap:8px;
+      }
+
+      .pill{
+        font-size:.78rem;
+        padding:.45rem .9rem;
+      }
+
+      .qty-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+      }
+
+      .action-row{
+        flex-direction:column;
+      }
+
+      .btn-order{
+        width:100%;
+      }
+
+      .btn-wishlist{
+        width:100%;
+        border-radius:50px;
+        height:48px;
+      }
+
+      .highlights{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .highlight-item{
+        display:flex;
+        align-items:center;
+        text-align:left;
+        gap:14px;
+      }
+
+      .hi-icon{
+        margin:0;
+      }
+
+      .tabs{
+        overflow:auto;
+        white-space:nowrap;
+      }
+
+      .tab-btn{
+        flex:none;
+        padding:.8rem 1rem;
+      }
+
+      .review-summary{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+
+      .rel-img{
+        height:200px;
+      }
+
     }
-    @media (max-width: 480px) {
-      .related-grid { grid-template-columns: repeat(2, 1fr); }
-      .highlights { grid-template-columns: repeat(3, 1fr); }
-      .action-row { flex-direction: column; }
-      .btn-wishlist { width: 100%; border-radius: 50px; }
+
+    @media(max-width:480px){
+
+      .product-name{
+        font-size:1.4rem;
+      }
+
+      .price-main{
+        font-size:1.5rem;
+      }
+
+      .thumb{
+        width:60px;
+        height:60px;
+      }
+
+      .review-score .big{
+        font-size:2.8rem;
+      }
+
     }
   
     /* Hamburger mobile nav (auto-added) */
