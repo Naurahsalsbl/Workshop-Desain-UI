@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Masuk — GreenBite</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-dark: #1a4a2e;
@@ -23,7 +23,7 @@
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text);
+    font-family:'Manrope',sans-serif; background:var(--bg); color:var(--text);
     min-height:100vh; display:flex; align-items:stretch;
   }
 
@@ -203,7 +203,7 @@
   }
   .role-btn {
     flex: 1; border: none; background: transparent; padding: 0.6rem 0.5rem; border-radius: 9px;
-    font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--gray);
+    font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--gray);
     cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
   }
   .role-btn.active { background: var(--green-dark); color: #fff; box-shadow: 0 4px 12px rgba(26,74,46,0.25); }
@@ -213,7 +213,7 @@
   .social-btn {
     flex:1; border:1.5px solid var(--border); background:var(--white); border-radius:12px;
     padding:0.65rem 0.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;
-    font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; color:var(--text);
+    font-family:'Manrope',sans-serif; font-size:0.82rem; font-weight:600; color:var(--text);
     cursor:pointer; transition:all 0.2s;
   }
   .social-btn:hover { border-color:var(--green-lime); background:var(--green-pale); }
@@ -230,7 +230,7 @@
   .input-wrap .ico { position:absolute; left:1rem; top:50%; transform:translateY(-50%); font-size:1rem; pointer-events:none; }
   .input-wrap input {
     width:100%; padding:0.72rem 1rem 0.72rem 2.7rem; border:1.5px solid var(--border);
-    border-radius:12px; font-family:'Poppins',sans-serif; font-size:0.88rem; color:var(--text);
+    border-radius:12px; font-family:'Manrope',sans-serif; font-size:0.88rem; color:var(--text);
     background:var(--white); outline:none; transition:border-color 0.2s, box-shadow 0.2s;
   }
   .input-wrap input::placeholder { color:#aaa; }
@@ -250,7 +250,7 @@
 
   .btn-submit {
     width:100%; background:var(--green-dark); color:#fff; border:none;
-    padding:0.85rem; border-radius:12px; font-family:'Poppins',sans-serif;
+    padding:0.85rem; border-radius:12px; font-family:'Manrope',sans-serif;
     font-size:0.95rem; font-weight:700; cursor:pointer; transition:all 0.2s;
     display:flex; align-items:center; justify-content:center; gap:0.5rem;
   }
@@ -310,7 +310,7 @@
       <div class="field">
         <label for="email">Email</label>
         <div class="input-wrap">
-          <span class="ico">✉️</span>
+          <span class="ico"></span>
           <input type="email" id="email" placeholder="nama@email.com"/>
         </div>
         <div class="field-error" id="err-email">Email tidak valid.</div>
@@ -319,7 +319,7 @@
       <div class="field">
         <label for="password">Password</label>
         <div class="input-wrap">
-          <span class="ico">🔒</span>
+          <span class="ico"></span>
           <input type="password" id="password" placeholder="Masukkan password"/>
           <button class="toggle-pw" type="button" onclick="togglePw('password',this)">👁️</button>
         </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pembayaran — GreenBite</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --green-dark: #1a4a2e;
@@ -19,7 +19,7 @@
       --red: #ef4444;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); }
+    body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); }
 
     /* NAV */
     nav {
@@ -28,7 +28,7 @@
       height: 64px; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 1px 0 #e5e7eb;
     }
-    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--green-dark); text-decoration: none; }
+    .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--green-dark); text-decoration: none; }
     .nav-logo span { color: var(--green-lime); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--gray); font-size: 0.9rem; transition: color 0.2s; }
@@ -85,7 +85,7 @@
     .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--green-dark); }
     .form-group input, .form-group select, .form-group textarea {
       border: 1.5px solid #e5e7eb; border-radius: 10px;
-      padding: 0.65rem 0.9rem; font-family: 'Poppins', sans-serif;
+      padding: 0.65rem 0.9rem; font-family: 'Manrope', sans-serif;
       font-size: 0.88rem; outline: none; transition: border-color 0.2s;
       background: var(--bg); color: var(--text);
     }
@@ -120,7 +120,7 @@
     .copy-btn {
       background: var(--green-dark); color: #fff; border: none;
       padding: 0.3rem 0.75rem; border-radius: 8px; font-size: 0.75rem;
-      cursor: pointer; font-family: 'Poppins', sans-serif;
+      cursor: pointer; font-family: 'Manrope', sans-serif;
     }
 
     /* QRIS */
@@ -170,7 +170,7 @@
     .total-value { font-size: 1.4rem; font-weight: 800; color: var(--green-dark); }
     .btn-pay {
       width: 100%; background: var(--green-dark); color: #fff; border: none;
-      padding: 0.9rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 0.9rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
       margin-bottom: 0.75rem;
     }
@@ -178,7 +178,7 @@
     .btn-back-cart {
       width: 100%; background: none; color: var(--green-dark);
       border: 1.5px solid var(--green-dark); padding: 0.75rem;
-      border-radius: 50px; font-family: 'Poppins', sans-serif;
+      border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
     }
     .btn-back-cart:hover { background: var(--green-light); }
@@ -200,7 +200,7 @@
     .order-number { background: var(--green-light); border-radius: 10px; padding: 0.6rem 1rem; font-weight: 700; color: var(--green-dark); margin: 1rem 0; font-size: 0.95rem; }
     .modal-btn {
       width: 100%; background: var(--green-dark); color: #fff; border: none;
-      padding: 0.85rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 0.85rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem;
       transition: background 0.2s;
     }
@@ -284,7 +284,7 @@
 
       <!-- DATA PENGIRIMAN -->
       <div class="section-card">
-        <div class="section-title">📦 Data Pengiriman</div>
+        <div class="section-title"><i data-lucide="package-check"></i> Data Pengiriman</div>
         <div class="form-grid">
           <div class="form-group">
             <label>Nama Lengkap *</label>
@@ -315,7 +315,7 @@
 
       <!-- METODE PENGIRIMAN -->
       <div class="section-card">
-        <div class="section-title">🚚 Metode Pengiriman</div>
+        <div class="section-title"><i data-lucide="truck"></i> Metode Pengiriman</div>
         <div style="display:flex;flex-direction:column;gap:0.75rem">
           <label style="display:flex;align-items:center;gap:0.75rem;border:2px solid var(--green-dark);border-radius:12px;padding:0.9rem;background:var(--green-light);cursor:pointer">
             <input type="radio" name="pengiriman" value="same" checked style="accent-color:var(--green-dark);width:16px;height:16px"/>
@@ -338,11 +338,11 @@
 
       <!-- METODE PEMBAYARAN -->
       <div class="section-card">
-        <div class="section-title">💳 Metode Pembayaran</div>
+        <div class="section-title"><i data-lucide="credit-card"></i> Metode Pembayaran</div>
         <div class="payment-options">
           <div class="payment-option selected" onclick="selectPayment(this, 'transfer')">
             <input type="radio" name="payment" checked/>
-            <div class="payment-icon">🏦</div>
+            <div class="payment-icon"><i data-lucide="landmark"></i></div>
             <div class="payment-info">
               <div class="payment-name">Transfer Bank</div>
               <div class="payment-desc">BCA, Mandiri, BNI</div>
@@ -350,7 +350,7 @@
           </div>
           <div class="payment-option" onclick="selectPayment(this, 'qris')">
             <input type="radio" name="payment"/>
-            <div class="payment-icon">📱</div>
+            <div class="payment-icon"><i data-lucide="qr-code"></i></div>
             <div class="payment-info">
               <div class="payment-name">QRIS</div>
               <div class="payment-desc">Scan & bayar</div>
@@ -358,7 +358,7 @@
           </div>
           <div class="payment-option" onclick="selectPayment(this, 'ewallet')">
             <input type="radio" name="payment"/>
-            <div class="payment-icon">💚</div>
+            <div class="payment-icon"><i data-lucide="wallet"></i></div>
             <div class="payment-info">
               <div class="payment-name">E-Wallet</div>
               <div class="payment-desc">GoPay, OVO, Dana</div>
@@ -366,7 +366,7 @@
           </div>
           <div class="payment-option" onclick="selectPayment(this, 'cod')">
             <input type="radio" name="payment"/>
-            <div class="payment-icon">💵</div>
+            <div class="payment-icon"><i data-lucide="hand-coins"></i></div>
             <div class="payment-info">
               <div class="payment-name">COD</div>
               <div class="payment-desc">Bayar di tempat</div>
@@ -387,7 +387,7 @@
 
         <!-- QRIS -->
         <div class="qris-box" id="qrisDetail">
-          <div class="qris-img">📱</div>
+          <div class="qris-img"><i data-lucide="qr-code"></i></div>
           <p style="font-weight:600;color:var(--green-dark);margin-bottom:0.25rem">Scan QR Code</p>
           <p>Buka aplikasi pembayaran kamu dan scan QR di atas</p>
         </div>
@@ -398,7 +398,7 @@
     <!-- RIGHT: SUMMARY -->
     <div>
       <div class="summary-card">
-        <div class="summary-title">🧾 Ringkasan Pesanan</div>
+        <div class="summary-title"><i data-lucide="receipt-text"></i> Ringkasan Pesanan</div>
         <div class="order-items">
           <div class="order-item">
             <div class="order-item-img"><img src="images/salad.jpg" alt="Green Goddess Salad"></div>
@@ -436,9 +436,9 @@
           <span class="total-value">Rp 155.000</span>
         </div>
 
-        <button class="btn-pay" onclick="confirmPayment()">✅ Konfirmasi Pesanan</button>
+        <button class="btn-pay" onclick="confirmPayment()"><i data-lucide="receipt-text"></i> Konfirmasi Pesanan</button>
         <button class="btn-back-cart" onclick="window.location.href='keranjang.html'">← Kembali ke Keranjang</button>
-        <div class="secure-info">🔒 Pembayaran aman & terenkripsi</div>
+        <div class="secure-info"><i data-lucide="shield-check"></i> Pembayaran aman & terenkripsi</div>
       </div>
     </div>
   </div>
@@ -446,7 +446,7 @@
   <!-- SUCCESS MODAL -->
   <div class="modal-overlay" id="successModal">
     <div class="modal">
-      <div class="modal-icon">🎉</div>
+      <div class="modal-icon"><i data-lucide="party-popper"></i></div>
       <h2>Pesanan Berhasil!</h2>
       <p>Terima kasih telah memesan di GreenBite. Pesananmu sedang kami proses dan akan segera dikirim.</p>
       <div class="order-number" id="orderNumber">No. Pesanan: #GB-2025-0001</div>
@@ -475,7 +475,7 @@
     function copyRek() {
       navigator.clipboard?.writeText('1234567890 12');
       const btn = document.querySelector('.copy-btn');
-      btn.textContent = '✅ Tersalin';
+      btn.textContent = 'Tersalin';
       setTimeout(() => btn.textContent = 'Salin', 2000);
     }
 
@@ -501,6 +501,12 @@
       document.querySelector('.nav-links').classList.toggle('mobile-open');
       document.getElementById('hamburgerBtn').classList.toggle('open');
     }
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  lucide.createIcons();
   </script>
 </body>
 </html>

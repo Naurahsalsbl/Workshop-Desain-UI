@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Katalog Produk — GreenBite</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --green-dark: #1a4a2e;
@@ -21,7 +21,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       background: var(--bg);
       color: var(--text);
     }
@@ -41,7 +41,7 @@
     }
 
     .nav-logo {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-weight: 800;
       font-size: 1.4rem;
       color: var(--green-dark);
@@ -77,7 +77,7 @@
       border: none;
       padding: 0.5rem 1.2rem;
       border-radius: 50px;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.9rem;
       cursor: pointer;
       display: flex;
@@ -126,7 +126,7 @@
     }
 
     .hero-text h1 {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 800;
       line-height: 1.15;
@@ -151,7 +151,7 @@
     .stat { text-align: center; }
     .stat strong {
       display: block;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 1.5rem;
       font-weight: 800;
       color: #a8e063;
@@ -208,7 +208,7 @@
       border: none;
       background: none;
       outline: none;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.9rem;
       width: 100%;
       color: var(--text);
@@ -220,7 +220,7 @@
       border: 1.5px solid #e5e7eb;
       border-radius: 50px;
       padding: 0.5rem 1rem;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.85rem;
       background: var(--bg);
       color: var(--text);
@@ -244,7 +244,7 @@
       transition: all 0.2s;
       background: var(--white);
       color: var(--gray);
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
     }
 
     .tag.active, .tag:hover {
@@ -266,7 +266,7 @@
     }
 
     .section-header h2 {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--green-dark);
@@ -360,7 +360,7 @@
     }
 
     .product-name {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--green-dark);
@@ -394,7 +394,7 @@
     }
 
     .product-price {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
       color: var(--green-dark);
@@ -406,7 +406,7 @@
       text-decoration: line-through;
       font-weight: 400;
       display: block;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
     }
 
     .btn-add {
@@ -415,7 +415,7 @@
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 50px;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.82rem;
       cursor: pointer;
       display: flex;
@@ -443,7 +443,7 @@
       border: 1.5px solid #e5e7eb;
       background: var(--white);
       cursor: pointer;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.85rem;
       transition: all 0.2s;
       display: flex;
@@ -510,7 +510,7 @@
     </ul>
     <div class="nav-right">
       <button class="btn-cart" onclick="goToCart()">
-        🛒 Keranjang
+        <i data-lucide="shopping-cart"></i><span>Keranjang</span>
         <span class="cart-badge" id="cartCount">0</span>
       </button>
     </div>
@@ -524,7 +524,7 @@
       <div class="hero-stats">
         <div class="stat"><strong>120+</strong><span>Produk</span></div>
         <div class="stat"><strong>100%</strong><span>Segar</span></div>
-        <div class="stat"><strong>4.9⭐</strong><span>Rating</span></div>
+        <div class="stat"><strong>4.9<i data-lucide="star"></i></strong><span>Rating</span></div>
       </div>
     </div>
     <div class="hero-img">
@@ -536,7 +536,7 @@
   <div class="filter-section">
     <div class="filter-top">
       <div class="search-box">
-        <span>🔍</span>
+        <span><i data-lucide="search"></i></span>
         <input type="text" placeholder="Cari produk..." id="searchInput" oninput="filterProducts()"/>
       </div>
       <select class="sort-select" onchange="sortProducts(this.value)">
@@ -574,7 +574,7 @@
     </div>
   </main>
 
-  <div class="toast" id="toast">✅ Ditambahkan ke keranjang!</div>
+  <div class="toast" id="toast">Ditambahkan ke keranjang!</div>
 
   <script>
     const products = [
@@ -694,6 +694,11 @@
     }
 
     renderProducts(products);
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  lucide.createIcons();
   </script>
 </body>
 </html>

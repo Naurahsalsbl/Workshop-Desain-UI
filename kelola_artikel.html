@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kelola Artikel — GreenBite Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --green-dark: #1a4a2e;
@@ -20,7 +20,7 @@
       --sidebar: 240px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+    body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
 
     /* SIDEBAR */
     .sidebar {
@@ -83,11 +83,11 @@
     /* TOOLBAR */
     .toolbar { background: var(--white); border-radius: 16px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
     .search-box { display: flex; align-items: center; gap: 0.5rem; background: var(--bg); border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; flex: 1; min-width: 200px; }
-    .search-box input { border: none; background: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; width: 100%; }
-    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
-    .btn-primary { background: var(--green-dark); color: #fff; border: none; padding: 0.55rem 1.2rem; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: background 0.2s; white-space: nowrap; }
+    .search-box input { border: none; background: none; outline: none; font-family: 'Manrope', sans-serif; font-size: 0.88rem; width: 100%; }
+    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Manrope', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
+    .btn-primary { background: var(--green-dark); color: #fff; border: none; padding: 0.55rem 1.2rem; border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: background 0.2s; white-space: nowrap; }
     .btn-primary:hover { background: var(--green-mid); }
-    .btn-secondary { background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark); padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+    .btn-secondary { background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark); padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
     .btn-secondary:hover { background: var(--green-light); }
 
     /* GRID ARTIKEL */
@@ -143,7 +143,7 @@
     .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--green-dark); }
     .form-group input, .form-group select, .form-group textarea {
       border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.6rem 0.9rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.88rem; outline: none;
+      font-family: 'Manrope', sans-serif; font-size: 0.88rem; outline: none;
       transition: border-color 0.2s; background: var(--bg);
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-lime); background: #fff; }
@@ -193,20 +193,20 @@
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item" href="dashboard_admin.html"><span class="icon"><i data-lucide="layout-dashboard"></i></span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
-      <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
-      <a class="nav-item active" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
+      <a class="nav-item" href="kelola_produk.html"><span class="icon"><i data-lucide="package"></i></span> Kelola Produk</a>
+      <a class="nav-item active" href="kelola_artikel.html"><span class="icon"><i data-lucide="newspaper"></i></span> Kelola Artikel</a>
       <div class="nav-section">Kelola Pengguna</div>
-      <a class="nav-item" href="kelola_pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
-      <a class="nav-item" href="kelola_transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
+      <a class="nav-item" href="kelola_pengguna.html"><span class="icon"><i data-lucide="users"></i></span> Kelola Pengguna</a>
+      <a class="nav-item" href="kelola_transaksi.html"><span class="icon"><i data-lucide="receipt-text"></i></span> Kelola Transaksi</a>
       <div class="nav-section">Lainnya</div>
-      <a class="nav-item" href="index.html"><span class="icon">🌐</span> Lihat Website</a>
-      <a class="nav-item" href="#"><span class="icon">⚙️</span> Pengaturan</a>
+      <a class="nav-item" href="index.html"><span class="icon"><i data-lucide="globe"></i></span> Lihat Website</a>
+      <a class="nav-item" href="#"><span class="icon"><i data-lucide="settings"></i></span> Pengaturan</a>
     </nav>
     <div class="sidebar-footer">
       <div class="admin-info">
-        <div class="admin-avatar">👩‍💼</div>
+        <div class="admin-avatar"><i data-lucide="user-round"></i></div>
         <div>
           <div class="admin-name">Rina</div>
           <div class="admin-role">Administrator</div>
@@ -225,7 +225,7 @@
           <div class="breadcrumb-top">Admin / Kelola Artikel</div>
         </div>
       </div>
-      <button class="notif-btn">🔔<span class="notif-dot"></span></button>
+      <button class="notif-btn"><i data-lucide="bell"></i><span class="notif-dot"></span></button>
     </div>
 
     <div class="content">
@@ -233,22 +233,22 @@
       <!-- STATS -->
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dcfce7">📝</div>
+          <div class="stat-icon" style="background:#dcfce7"><i data-lucide="newspaper"></i></div>
           <div class="stat-info"><div class="stat-val">42</div><div class="stat-label">Total Artikel</div></div>
           <span class="stat-badge badge-green">+3 baru</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dbeafe">✅</div>
+          <div class="stat-icon" style="background:#dbeafe"><i data-lucide="circle-check-big"></i></div>
           <div class="stat-info"><div class="stat-val">35</div><div class="stat-label">Dipublikasikan</div></div>
           <span class="stat-badge badge-blue">83%</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#fef9c3">📄</div>
+          <div class="stat-icon" style="background:#fef9c3"><i data-lucide="file-text"></i></div>
           <div class="stat-info"><div class="stat-val">7</div><div class="stat-label">Draft</div></div>
           <span class="stat-badge badge-yellow">Belum publish</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#fee2e2">👁️</div>
+          <div class="stat-icon" style="background:#fee2e2"><i data-lucide="eye"></i></div>
           <div class="stat-info"><div class="stat-val">48.2k</div><div class="stat-label">Total Dibaca</div></div>
           <span class="stat-badge badge-red">Bulan ini</span>
         </div>
@@ -257,7 +257,7 @@
       <!-- TOOLBAR -->
       <div class="toolbar">
         <div class="search-box">
-          <span>🔍</span>
+          <span><i data-lucide="search"></i></span>
           <input type="text" placeholder="Cari artikel..." id="searchInput" oninput="filterArticles()"/>
         </div>
         <select class="filter-select" id="catFilter" onchange="filterArticles()">
@@ -272,7 +272,7 @@
           <option value="Published">Published</option>
           <option value="Draft">Draft</option>
         </select>
-        <button class="btn-primary" onclick="openModal()">+ Tambah Artikel</button>
+        <button class="btn-primary" onclick="openModal()"><i data-lucide="plus"></i>Tambah Artikel</button>
       </div>
 
       <!-- ARTICLE GRID -->
@@ -295,12 +295,12 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title" id="modalTitle">📝 Tambah Artikel Baru</div>
+        <div class="modal-title" id="modalTitle">Tambah Artikel Baru</div>
         <button class="modal-close" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
         <div class="img-upload">
-          <div class="upload-icon">🖼️</div>
+          <div class="upload-icon"></div>
           <p>Klik untuk upload gambar sampul artikel</p>
           <p style="font-size:0.72rem;margin-top:0.25rem">PNG, JPG max 2MB</p>
         </div>
@@ -342,7 +342,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn-secondary" onclick="closeModal()">Batal</button>
-        <button class="btn-primary" onclick="saveArticle()">💾 Simpan Artikel</button>
+        <button class="btn-primary" onclick="saveArticle()">Simpan Artikel</button>
       </div>
     </div>
   </div>
@@ -379,9 +379,9 @@
               <span>👁 ${(a.views/1000).toFixed(1)}k</span>
             </div>
             <div class="article-actions">
-              <button class="act-btn act-toggle" onclick="togglePublish('${a.id}')">${a.status === 'Published' ? '👁 Unpublish' : '📤 Publish'}</button>
-              <button class="act-btn act-edit" onclick="editArticle('${a.id}')">✏️ Edit</button>
-              <button class="act-btn act-delete" onclick="deleteArticle('${a.id}')">🗑️</button>
+              <button class="act-btn act-toggle" onclick="togglePublish('${a.id}')">${a.status === 'Published' ? '<i data-lucide="eye-off"></i>' : '<i data-lucide="send"></i>'}</button>
+              <button class="act-btn act-edit" onclick="editArticle('${a.id}')"><i data-lucide="pencil"></i></button>
+              <button class="act-btn act-delete" onclick="deleteArticle('${a.id}')"><i data-lucide="trash-2"></i></button>
             </div>
           </div>
         </div>
@@ -405,7 +405,7 @@
       if (a) {
         a.status = a.status === 'Published' ? 'Draft' : 'Published';
         renderArticles(articles);
-        showToast(a.status === 'Published' ? '✅ Artikel dipublikasikan!' : '📄 Artikel dijadikan draft');
+        showToast(a.status === 'Published' ? 'Artikel dipublikasikan!' : '📄 Artikel dijadikan draft');
       }
     }
 
@@ -413,7 +413,7 @@
       if (confirm('Hapus artikel ini?')) {
         articles = articles.filter(a => a.id !== id);
         renderArticles(articles);
-        showToast('🗑️ Artikel berhasil dihapus!');
+        showToast('Artikel berhasil dihapus!');
       }
     }
 
@@ -421,7 +421,7 @@
       const a = articles.find(a => a.id === id);
       if (!a) return;
       editingId = id;
-      document.getElementById('modalTitle').textContent = '✏️ Edit Artikel';
+      document.getElementById('modalTitle').textContent = ' Edit Artikel';
       document.getElementById('fTitle').value = a.title;
       document.getElementById('fCat').value = a.cat;
       document.getElementById('fAuthor').value = a.author;
@@ -433,7 +433,7 @@
     function closeModal() {
       document.getElementById('modalOverlay').classList.remove('open');
       editingId = null;
-      document.getElementById('modalTitle').textContent = '📝 Tambah Artikel Baru';
+      document.getElementById('modalTitle').textContent = '<i data-lucide="square-pen"></i> Tambah Artikel Baru';
       ['fTitle','fCat','fAuthor','fExcerpt','fContent'].forEach(id => document.getElementById(id).value = '');
       document.getElementById('fPublish').checked = true;
     }
@@ -442,7 +442,7 @@
       const title = document.getElementById('fTitle').value.trim();
       const cat = document.getElementById('fCat').value;
       const author = document.getElementById('fAuthor').value.trim();
-      if (!title || !cat || !author) { showToast('⚠️ Judul, kategori, dan penulis wajib diisi!'); return; }
+      if (!title || !cat || !author) { showToast('Judul, kategori, dan penulis wajib diisi!'); return; }
 
       const isPublish = document.getElementById('fPublish').checked;
 
@@ -452,7 +452,7 @@
           a.title = title; a.cat = cat; a.author = author;
           a.status = isPublish ? 'Published' : 'Draft';
         }
-        showToast('✅ Artikel berhasil diperbarui!');
+        showToast('Artikel berhasil diperbarui!');
       } else {
         const emojis = { Nutrisi:'🥗', Resep:'🍳', "Gaya Hidup":'🧘', Olahraga:'🏃' };
         articles.unshift({
@@ -461,7 +461,7 @@
           author, date: 'Hari ini', views: 0,
           status: isPublish ? 'Published' : 'Draft'
         });
-        showToast('✅ Artikel baru berhasil ditambahkan!');
+        showToast('Artikel baru berhasil ditambahkan!');
       }
       renderArticles(articles);
       closeModal();
@@ -476,6 +476,11 @@
     }
 
     renderArticles(articles);
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  lucide.createIcons();
   </script>
 </body>
 </html>

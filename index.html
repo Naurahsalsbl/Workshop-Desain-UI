@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GreenBite — Makan Sehat, Hidup Lebih Baik</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --green-dark: #1a4a2e;
@@ -22,7 +22,7 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
     /* ── NAVBAR ── */
     .navbar {
@@ -45,13 +45,13 @@
     .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
     .btn-outline {
       border: 1.5px solid var(--green-dark); color: var(--green-dark); background: none;
-      padding: 0.5rem 1.1rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 0.5rem 1.1rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
     }
     .btn-outline:hover { background: var(--green-dark); color: #fff; }
     .btn-solid {
       background: var(--green-dark); color: #fff; border: none;
-      padding: 0.55rem 1.3rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 0.55rem 1.3rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
     }
     .btn-solid:hover { background: var(--green-mid); transform: translateY(-1px); }
@@ -94,14 +94,14 @@
     .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .btn-hero {
       background: var(--green-dark); color: #fff; border: none;
-      padding: 0.85rem 2rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 0.85rem 2rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
       display: flex; align-items: center; gap: 0.5rem;
     }
     .btn-hero:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,74,46,0.25); }
     .btn-hero-ghost {
       background: none; color: var(--green-dark); border: none;
-      padding: 0.85rem 1.5rem; font-family: 'Poppins', sans-serif;
+      padding: 0.85rem 1.5rem; font-family: 'Manrope', sans-serif;
       font-size: 0.95rem; font-weight: 600; cursor: pointer;
       display: flex; align-items: center; gap: 0.4rem; transition: gap 0.2s;
     }
@@ -219,7 +219,7 @@
     .menu-btn {
       background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2);
       padding: 0.35rem 0.85rem; border-radius: 50px; font-size: 0.78rem;
-      font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.2s;
+      font-family: 'Manrope', sans-serif; cursor: pointer; transition: all 0.2s;
     }
     .menu-btn:hover { background: var(--green-lime); border-color: var(--green-lime); color: var(--green-dark); }
     .menu-img img{
@@ -293,7 +293,7 @@
     .cta-desc { font-size: 0.95rem; color: rgba(255,255,255,0.8); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
     .cta-btn {
       background: #fff; color: var(--green-dark); border: none;
-      padding: 1rem 2.5rem; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      padding: 1rem 2.5rem; border-radius: 50px; font-family: 'Manrope', sans-serif;
       font-size: 1rem; font-weight: 800; cursor: pointer;
       transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
     }
@@ -413,6 +413,20 @@
         font-weight:700;
         cursor:pointer;
     }
+    svg.lucide{
+    width:20px;
+    height:20px;
+    stroke-width:2;
+    vertical-align:middle;
+    }
+
+    .feature-icon-wrap svg,
+    .feat-card-icon svg,
+    .how-icon svg,
+    .badge-icon svg{
+        width:28px;
+        height:28px;
+    }
   </style>
 </head>
 <body>
@@ -438,10 +452,10 @@
 
   <div class="mobile-menu" id="mobileMenu">
 
-      <a href="#features">🌿 Fitur</a>
-      <a href="#menu">🥗 Menu</a>
-      <a href="#how">📖 Cara Kerja</a>
-      <a href="arsip_artikel.html">📰 Blog</a>
+      <a href="#features"><i data-lucide="sparkles"></i> Fitur</a>
+      <a href="#menu"><i data-lucide="utensils-crossed"></i> Menu</a>
+      <a href="#how"><i data-lucide="book-open"></i> Cara Kerja</a>
+      <a href="arsip_artikel.html"><i data-lucide="newspaper"></i> Blog</a>
 
       <div class="mobile-divider"></div>
 
@@ -484,11 +498,11 @@
     <div class="hero-visual">
       <div class="hero-img-wrap"><img src="images/omega3.jpg" alt="Healthy Food"></div>
       <div class="hero-badge badge-top">
-        <div class="badge-icon">🌿</div>
+        <div class="badge-icon"><i data-lucide="leaf"></i></div>
         <div><div style="font-size:0.75rem;font-weight:700;color:var(--green-dark)">Zero Pengawet</div><div style="font-size:0.68rem;color:var(--gray)">Dijamin segar</div></div>
       </div>
       <div class="hero-badge badge-bottom">
-        <div class="badge-icon">🚚</div>
+        <div class="badge-icon"><i data-lucide="truck"></i></div>
         <div><div style="font-size:0.75rem;font-weight:700;color:var(--green-dark)">Same Day Delivery</div><div style="font-size:0.68rem;color:var(--gray)">Tiba hari ini</div></div>
       </div>
     </div>
@@ -511,21 +525,21 @@
         <p class="section-desc">Kami percaya makan sehat tidak harus menyulitkan. GreenBite hadir untuk membuktikannya.</p>
         <div class="features-list">
           <div class="feature-item">
-            <div class="feature-icon-wrap" style="background:#e8f5e9">🌾</div>
+            <div class="feature-icon-wrap" style="background:#e8f5e9"><i data-lucide="sprout"></i></div>
             <div class="feature-info">
               <h3>Bahan dari Petani Lokal</h3>
               <p>Kami bermitra langsung dengan 30+ petani organik di Jawa Timur — dipanen hari ini, dikirim esok hari dalam kemasan ramah lingkungan.</p>
             </div>
           </div>
           <div class="feature-item">
-            <div class="feature-icon-wrap" style="background:#fff8e8">🧑‍🍳</div>
+            <div class="feature-icon-wrap" style="background:#fff8e8"><i data-lucide="chef-hat"></i></div>
             <div class="feature-info">
               <h3>Disiapkan Chef Berpengalaman</h3>
               <p>Setiap menu dirancang ahli gizi dan disiapkan chef profesional pagi harinya — agar nutrisi tetap terjaga saat sampai di tanganmu.</p>
             </div>
           </div>
           <div class="feature-item">
-            <div class="feature-icon-wrap" style="background:#ede9fe">📊</div>
+            <div class="feature-icon-wrap" style="background:#ede9fe"><i data-lucide="chart-column"></i></div>
             <div class="feature-info">
               <h3>Info Nutrisi Transparan</h3>
               <p>Setiap produk dilengkapi label nutrisi lengkap — kalori, protein, lemak, karbohidrat — agar kamu bisa makan dengan sadar.</p>
@@ -535,22 +549,22 @@
       </div>
       <div class="features-visual">
         <div class="feat-card">
-          <div class="feat-card-icon">❄️</div>
+          <div class="feat-card-icon"><i data-lucide="snowflake"></i></div>
           <h4>Kemasan Vakum</h4>
           <p>Dikemas dengan teknologi vakum untuk menjaga kesegaran hingga 24 jam.</p>
         </div>
         <div class="feat-card">
-          <div class="feat-card-icon">🔬</div>
+          <div class="feat-card-icon"><i data-lucide="flask-conical"></i></div>
           <h4>Uji Lab Rutin</h4>
           <p>Setiap batch bahan baku diuji laboratorium sebelum masuk dapur kami.</p>
         </div>
         <div class="feat-card">
-          <div class="feat-card-icon">♻️</div>
+          <div class="feat-card-icon"><i data-lucide="recycle"></i></div>
           <h4>Kemasan Ramah Lingkungan</h4>
           <p>Packaging kami 100% biodegradable dan dapat didaur ulang.</p>
         </div>
         <div class="feat-card">
-          <div class="feat-card-icon">📱</div>
+          <div class="feat-card-icon"><i data-lucide="smartphone"></i></div>
           <h4>Mudah Diakses</h4>
           <p>Pesan lewat website dari HP atau laptop — responsif di semua perangkat.</p>
         </div>
@@ -635,25 +649,25 @@
     <div class="how-grid">
       <div class="how-step">
         <div class="how-num">1</div>
-        <div class="how-icon">🔍</div>
+        <div class="how-icon"><i data-lucide="search"></i></div>
         <h3>Pilih Menu</h3>
         <p>Telusuri ratusan menu sehat dan filter sesuai kebutuhan gizimu.</p>
       </div>
       <div class="how-step">
         <div class="how-num">2</div>
-        <div class="how-icon">🛒</div>
+        <div class="how-icon"><i data-lucide="shopping-cart"></i></div>
         <h3>Masukkan Keranjang</h3>
         <p>Tambahkan menu favoritmu ke keranjang dan sesuaikan porsinya.</p>
       </div>
       <div class="how-step">
         <div class="how-num">3</div>
-        <div class="how-icon">💳</div>
+        <div class="how-icon"><i data-lucide="credit-card"></i></div>
         <h3>Bayar dengan Mudah</h3>
         <p>Pilih metode pembayaran — transfer, QRIS, e-wallet, atau COD.</p>
       </div>
       <div class="how-step">
         <div class="how-num">4</div>
-        <div class="how-icon">🚚</div>
+        <div class="how-icon"><i data-lucide="truck"></i></div>
         <h3>Dikirim Segar</h3>
         <p>Pesananmu dikemas segar dan dikirim same day langsung ke pintumu.</p>
       </div>
@@ -696,7 +710,7 @@
 
   <!-- CTA -->
   <section class="cta-section">
-    <div class="cta-label">🌿 Mulai Sekarang</div>
+    <div class="cta-label"><i data-lucide="leaf"></i>Mulai Sekarang</div>
     <h2 class="cta-title">Siap Memulai<br/>Perjalanan Sehatmu?</h2>
     <p class="cta-desc">Bergabung dengan 1.200+ pelanggan yang sudah merasakan manfaat hidup sehat bersama GreenBite.</p>
     <button class="cta-btn" onclick="window.location.href='katalog_produk.html'">
@@ -736,7 +750,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 GreenBite. Semua hak dilindungi.</span>
-      <span>Made with 🌿 for healthy living</span>
+      <span>Made with <i data-lucide="heart"></i> for healthy living</span>
     </div>
   </footer>
 
@@ -763,6 +777,10 @@
     document.querySelectorAll(".mobile-menu a").forEach(link=>{
         link.addEventListener("click",closeMenu);
     });
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kelola Transaksi — GreenBite Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --green-dark: #1a4a2e; --green-mid: #2d7a4f; --green-lime: #5cb85c;
@@ -13,7 +13,7 @@
       --sidebar: 240px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+    body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
 
     .sidebar { width: var(--sidebar); background: var(--green-dark); color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: transform 0.3s; }
     .sidebar-logo { padding: 1.5rem 1.25rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -56,9 +56,9 @@
 
     .toolbar { background: var(--white); border-radius: 16px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
     .search-box { display: flex; align-items: center; gap: 0.5rem; background: var(--bg); border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; flex: 1; min-width: 200px; }
-    .search-box input { border: none; background: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.88rem; width: 100%; }
-    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Poppins', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
-    .btn-secondary { background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark); padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+    .search-box input { border: none; background: none; outline: none; font-family: 'Manrope', sans-serif; font-size: 0.88rem; width: 100%; }
+    .filter-select { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 0.5rem 0.9rem; font-family: 'Manrope', sans-serif; font-size: 0.85rem; background: var(--bg); color: var(--text); outline: none; cursor: pointer; }
+    .btn-secondary { background: var(--white); color: var(--green-dark); border: 1.5px solid var(--green-dark); padding: 0.5rem 1rem; border-radius: 10px; font-family: 'Manrope', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
     .btn-secondary:hover { background: var(--green-light); }
 
     .table-card { background: var(--white); border-radius: 16px; overflow: hidden; }
@@ -95,7 +95,7 @@
 
     .status-select {
       border: 1.5px solid #e5e7eb; border-radius: 50px; padding: 0.35rem 0.75rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600;
+      font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
       cursor: pointer; outline: none;
     }
     .status-waiting { background: #fef9c3; color: #ca8a04; border-color: #fef08a; }
@@ -168,20 +168,20 @@
     <div class="sidebar-logo"><span>GREEN<em>BITE</em></span><small>Admin Panel</small></div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item" href="dashboard_admin.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item" href="dashboard_admin.html"><span class="icon"><i data-lucide="layout-dashboard"></i></span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
-      <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
-      <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
+      <a class="nav-item" href="kelola_produk.html"><span class="icon"><i data-lucide="package"></i></span> Kelola Produk</a>
+      <a class="nav-item" href="kelola_artikel.html"><span class="icon"><i data-lucide="newspaper"></i></span> Kelola Artikel</a>
       <div class="nav-section">Kelola Pengguna</div>
-      <a class="nav-item" href="kelola_pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
-      <a class="nav-item active" href="kelola_transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
+      <a class="nav-item" href="kelola_pengguna.html"><span class="icon"><i data-lucide="users"></i></span> Kelola Pengguna</a>
+      <a class="nav-item active" href="kelola_transaksi.html"><span class="icon"><i data-lucide="receipt-text"></i></span> Kelola Transaksi</a>
       <div class="nav-section">Lainnya</div>
-      <a class="nav-item" href="index.html"><span class="icon">🌐</span> Lihat Website</a>
-      <a class="nav-item" href="#"><span class="icon">⚙️</span> Pengaturan</a>
+      <a class="nav-item" href="index.html"><span class="icon"><i data-lucide="globe"></i></span> Lihat Website</a>
+      <a class="nav-item" href="#"><span class="icon"><i data-lucide="settings"></i></span> Pengaturan</a>
     </nav>
     <div class="sidebar-footer">
       <div class="admin-info">
-        <div class="admin-avatar">👩‍💼</div>
+        <div class="admin-avatar"><i data-lucide="user-round"></i></div>
         <div><div class="admin-name">Rina</div><div class="admin-role">Administrator</div></div>
       </div>
     </div>
@@ -193,28 +193,28 @@
         <button id="menuBtn" onclick="toggleSidebar()">☰</button>
         <div><h1>Kelola Transaksi</h1><div class="breadcrumb-top">Admin / Kelola Transaksi</div></div>
       </div>
-      <button class="notif-btn">🔔<span class="notif-dot"></span></button>
+      <button class="notif-btn"><i data-lucide="bell"></i><span class="notif-dot"></span></button>
     </div>
 
     <div class="content">
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dcfce7">💰</div>
+          <div class="stat-icon" style="background:#dcfce7"><i data-lucide="wallet"></i></div>
           <div class="stat-info"><div class="stat-val">Rp12,4Jt</div><div class="stat-label">Pendapatan Bulan Ini</div></div>
           <span class="stat-badge badge-green">+18%</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#fef9c3">⏳</div>
+          <div class="stat-icon" style="background:#fef9c3"><i data-lucide="clock-3"></i></div>
           <div class="stat-info"><div class="stat-val">14</div><div class="stat-label">Menunggu Konfirmasi</div></div>
           <span class="stat-badge badge-yellow">Perlu aksi</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#ede9fe">🚚</div>
+          <div class="stat-icon" style="background:#ede9fe"><i data-lucide="truck"></i></div>
           <div class="stat-info"><div class="stat-val">22</div><div class="stat-label">Sedang Dikirim</div></div>
           <span class="stat-badge badge-purple">Dalam proses</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dbeafe">✅</div>
+          <div class="stat-icon" style="background:#dbeafe"><i data-lucide="circle-check-big"></i></div>
           <div class="stat-info"><div class="stat-val">186</div><div class="stat-label">Transaksi Selesai</div></div>
           <span class="stat-badge badge-blue">Bulan ini</span>
         </div>
@@ -222,7 +222,7 @@
 
       <div class="toolbar">
         <div class="search-box">
-          <span>🔍</span>
+          <span><i data-lucide="search"></i></span>
           <input type="text" placeholder="Cari nomor pesanan atau nama..." id="searchInput" oninput="filterTable()"/>
         </div>
         <select class="filter-select" id="statusFilter" onchange="filterTable()">
@@ -233,7 +233,7 @@
           <option value="Selesai">Selesai</option>
           <option value="Dibatalkan">Dibatalkan</option>
         </select>
-        <button class="btn-secondary" onclick="exportData()">📥 Export</button>
+        <button class="btn-secondary" onclick="exportData()"><i data-lucide="download"></i> Export</button>
       </div>
 
       <div class="table-card">
@@ -274,7 +274,7 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title">🧾 Detail Transaksi</div>
+        <div class="modal-title"><i data-lucide="receipt-text"></i> Detail Transaksi</div>
         <button class="modal-close" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
@@ -362,7 +362,7 @@
       if (t) {
         t.status = newStatus;
         el.className = 'status-select ' + statusClass[newStatus];
-        showToast(`✅ Status #${id} diubah ke "${newStatus}"`);
+        showToast(`Status #${id} diubah ke "${newStatus}"`);
       }
     }
 
@@ -384,7 +384,7 @@
     }
 
     function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-    function exportData() { showToast('📥 Data transaksi sedang diekspor...'); }
+    function exportData() { showToast('Data transaksi sedang diekspor...'); }
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
 
     function showToast(msg) {
@@ -394,6 +394,11 @@
     }
 
     renderTable(transactions);
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  lucide.createIcons();
   </script>
 </body>
 </html>

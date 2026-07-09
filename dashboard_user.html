@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Dashboard Saya — GreenBite</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-dark: #1a4a2e;
@@ -23,7 +23,7 @@
     --red-light: #fef2f2;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); }
+  body { font-family:'Manrope',sans-serif; background:var(--bg); color:var(--text); }
   a { text-decoration:none; color:inherit; }
 
   /* NAVBAR (sama gaya dgn katalog_produk.html) */
@@ -40,7 +40,7 @@
   .nav-avatar { width:38px; height:38px; border-radius:50%; background:var(--green-light); color:var(--green-dark); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; cursor:pointer; }
   .btn-cart {
     background:var(--green-dark); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:50px;
-    font-family:'Poppins',sans-serif; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; gap:0.4rem;
+    font-family:'Manrope',sans-serif; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; gap:0.4rem;
   }
   .btn-cart:hover { background:var(--green-mid); }
   .cart-badge { background:var(--accent); color:#fff; border-radius:50%; width:18px; height:18px; font-size:0.7rem; display:flex; align-items:center; justify-content:center; font-weight:700; }
@@ -100,7 +100,7 @@
   .track-price { font-weight:800; color:var(--green-dark); font-size:0.92rem; }
   .btn-outline-sm {
     border:1.5px solid var(--green-dark); color:var(--green-dark); background:none; padding:0.4rem 1rem;
-    border-radius:50px; font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:600; cursor:pointer; transition:all 0.2s;
+    border-radius:50px; font-family:'Manrope',sans-serif; font-size:0.78rem; font-weight:600; cursor:pointer; transition:all 0.2s;
   }
   .btn-outline-sm:hover { background:var(--green-dark); color:#fff; }
 
@@ -150,7 +150,7 @@
   .promo-tag { font-size:0.7rem; font-weight:700; background:rgba(255,255,255,0.2); display:inline-block; padding:0.2rem 0.6rem; border-radius:50px; margin-bottom:0.6rem; }
   .promo-card h4 { font-size:1.1rem; font-weight:800; margin-bottom:0.3rem; }
   .promo-card p { font-size:0.8rem; opacity:0.9; margin-bottom:1rem; max-width:220px; }
-  .promo-btn { background:#fff; color:var(--accent); border:none; padding:0.5rem 1.1rem; border-radius:50px; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; cursor:pointer; }
+  .promo-btn { background:#fff; color:var(--accent); border:none; padding:0.5rem 1.1rem; border-radius:50px; font-family:'Manrope',sans-serif; font-weight:700; font-size:0.8rem; cursor:pointer; }
 
   @media (max-width:1000px){
     .grid-2 { grid-template-columns:1fr; }
@@ -194,7 +194,7 @@
       </button>
     <div class="nav-right" style="position:relative;">
       <button class="btn-cart" onclick="window.location.href='keranjang.html'">
-        🛒 
+        <i data-lucide="shopping-cart"></i>
       </button>
       <div class="nav-avatar" onclick="toggleUserMenu()">N</div>
       <div id="userMenu" style="display:none; position:absolute; top:52px; right:0; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12); min-width:170px; overflow:hidden; z-index:200;">
@@ -202,8 +202,8 @@
           <div style="font-size:0.85rem; font-weight:700; color:var(--green-dark);">Noreen Aulia</div>
           <div style="font-size:0.72rem; color:var(--gray);">noreen@email.com</div>
         </div>
-        <a href="#" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--text);">⚙️ Pengaturan Akun</a>
-        <a href="index.html" onclick="return confirm('Yakin ingin keluar?')" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--red, #ef4444); border-top:1px solid #f1f1ee;">🚪 Keluar</a>
+        <a href="#" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--text);"><i data-lucide="shopping-cart"></i> Pengaturan Akun</a>
+        <a href="index.html" onclick="return confirm('Yakin ingin keluar?')" style="display:block; padding:0.7rem 1rem; font-size:0.85rem; color:var(--red, #ef4444); border-top:1px solid #f1f1ee;"><i data-lucide="log-out"></i> Keluar</a>
       </div>
     </div>
   </nav>
@@ -215,7 +215,7 @@
       <div class="banner-left">
         <div class="banner-avatar">U</div>
         <div>
-          <h2>Halo, User 👋</h2>
+          <h2>Halo, User <i data-lucide="hand"></i></h2>
           <p>Semoga harimu sehat dan penuh energi!</p>
         </div>
       </div>
@@ -228,19 +228,19 @@
     <!-- STATS -->
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-icon" style="background:var(--green-light)">🧾</div>
+        <div class="stat-icon" style="background:var(--green-light)"><i data-lucide="receipt-text"></i></div>
         <div><div class="stat-value">24</div><div class="stat-label">Total pesanan</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon" style="background:var(--accent-light)">🔥</div>
+        <div class="stat-icon" style="background:var(--accent-light)"><i data-lucide="flame"></i></div>
         <div><div class="stat-value">7 hari</div><div class="stat-label">Streak sehat</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon" style="background:#ede9fe">⭐</div>
+        <div class="stat-icon" style="background:#ede9fe"><i data-lucide="star"></i></div>
         <div><div class="stat-value">4.9</div><div class="stat-label">Rating diberikan</div></div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon" style="background:#e0f2fe">❤️</div>
+        <div class="stat-icon" style="background:#e0f2fe"><i data-lucide="heart"></i></div>
         <div><div class="stat-value">8</div><div class="stat-label">Menu favorit</div></div>
       </div>
     </div>
@@ -261,10 +261,10 @@
               <span class="status-chip status-process">Sedang Diantar</span>
             </div>
             <div class="track-steps">
-              <div class="track-step done"><div class="dot">✓</div><span class="label">Dipesan</span></div>
-              <div class="track-step done"><div class="dot">✓</div><span class="label">Disiapkan</span></div>
-              <div class="track-step done"><div class="dot">🚚</div><span class="label">Diantar</span></div>
-              <div class="track-step"><div class="dot">🏠</div><span class="label">Tiba</span></div>
+              <div class="track-step done"><div class="dot"><i data-lucide="check"></i></div><span class="label">Dipesan</span></div>
+              <div class="track-step done"><div class="dot"><i data-lucide="truck"></i></div><span class="label">Disiapkan</span></div>
+              <div class="track-step done"><div class="dot"><i data-lucide="house"></i></div><span class="label">Diantar</span></div>
+              <div class="track-step"><div class="dot"><i data-lucide="clock-3"></i></div><span class="label">Tiba</span></div>
             </div>
             <div class="track-items">Green Goddess Salad ×1, Berry Blast Smoothie ×1</div>
             <div class="track-footer">
@@ -279,10 +279,10 @@
               <span class="status-chip status-pending">Menunggu Konfirmasi</span>
             </div>
             <div class="track-steps">
-              <div class="track-step done"><div class="dot">✓</div><span class="label">Dipesan</span></div>
-              <div class="track-step"><div class="dot">⏳</div><span class="label">Disiapkan</span></div>
-              <div class="track-step"><div class="dot">🚚</div><span class="label">Diantar</span></div>
-              <div class="track-step"><div class="dot">🏠</div><span class="label">Tiba</span></div>
+              <div class="track-step done"><div class="dot"><i data-lucide="check"></i></div><span class="label">Dipesan</span></div>
+              <div class="track-step"><div class="dot"></div><span class="label">Disiapkan</span></div>
+              <div class="track-step"><div class="dot"><i data-lucide="house"></i></i></div><span class="label">Diantar</span></div>
+              <div class="track-step"><div class="dot"><i data-lucide="clock-3"></i></div><span class="label">Tiba</span></div>
             </div>
             <div class="track-items">Omega-3 Fish Bowl ×2</div>
             <div class="track-footer">
@@ -340,7 +340,7 @@
         </div>
 
         <div class="promo-card">
-          <span class="promo-tag">🎉 Khusus Untukmu</span>
+          <span class="promo-tag"><i data-lucide="gift"></i> Khusus Untukmu</span>
           <h4>Diskon 20%</h4>
           <p>Pakai kode SEHAT20 untuk pesanan berikutnya, berlaku sampai akhir bulan.</p>
           <button class="promo-btn" onclick="window.location.href='katalog_produk.html'">Pesan Sekarang</button>
@@ -366,6 +366,12 @@
       const avatar = document.querySelector('.nav-avatar');
       if (menu && !menu.contains(e.target) && e.target !== avatar) menu.style.display = 'none';
     });
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+  lucide.createIcons();
   </script>
 </body>
 </html>

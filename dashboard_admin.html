@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Dashboard Admin — GreenBite</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-dark: #1a4a2e;
@@ -20,7 +20,7 @@
     --sidebar: 240px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+  body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
   a { text-decoration: none; color: inherit; }
 
   /* SIDEBAR */
@@ -33,7 +33,7 @@
     padding: 1.5rem 1.25rem 1rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  .sidebar-logo span { font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 800; }
+  .sidebar-logo span { font-family: 'Manrope', sans-serif; font-size: 1.3rem; font-weight: 800; }
   .sidebar-logo span em { color: #a8e063; font-style: normal; }
   .sidebar-logo small { display: block; font-size: 0.7rem; opacity: 0.6; margin-top: 0.2rem; }
   .sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
@@ -92,7 +92,7 @@
     border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 50;
   }
   .topbar-left { display: flex; align-items: center; gap: 1rem; }
-  .topbar-left h1 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+  .topbar-left h1 { font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
   .breadcrumb-top { font-size: 0.78rem; color: var(--gray); }
   .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
   .notif-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #e5e7eb; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative; }
@@ -106,7 +106,7 @@
   .stat-card { background: var(--white); border-radius: 16px; padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
   .stat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
   .stat-info { flex: 1; }
-  .stat-val { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
+  .stat-val { font-family: 'Manrope', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
   .stat-label { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; }
   .stat-badge { font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 50px; font-weight: 600; white-space: nowrap; }
   .badge-green { background: #dcfce7; color: #16a34a; }
@@ -118,7 +118,7 @@
 
   .panel { background: var(--white); border-radius: 16px; padding: 1.4rem; margin-bottom: 1.25rem; }
   .panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-  .panel-head h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); }
+  .panel-head h3 { font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); }
   .panel-head .link { font-size: 0.8rem; color: var(--green-mid); font-weight: 600; cursor: pointer; }
 
   /* REVENUE CHART (bar chart, no external lib) */
@@ -194,7 +194,7 @@
   .quick-btn {
     background: var(--bg); border: 1.5px solid #e5e7eb; border-radius: 12px; padding: 0.9rem 0.75rem;
     display: flex; flex-direction: column; align-items: center; gap: 0.4rem; cursor: pointer;
-    transition: all 0.2s; font-family: 'Poppins', sans-serif;
+    transition: all 0.2s; font-family: 'Manrope', sans-serif;
   }
   .quick-btn:hover { border-color: var(--green-lime); background: var(--green-light); }
   .quick-btn .qi { font-size: 1.3rem; }
@@ -250,15 +250,15 @@
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Menu Utama</div>
-      <a class="nav-item active" href="dashboard_admin.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="nav-item active" href="dashboard_admin.html"><span class="icon"><i data-lucide="layout-dashboard"></i></span> Dashboard</a>
       <div class="nav-section">Kelola Konten</div>
-      <a class="nav-item" href="kelola_produk.html"><span class="icon">🛍️</span> Kelola Produk</a>
-      <a class="nav-item" href="kelola_artikel.html"><span class="icon">📝</span> Kelola Artikel</a>
+      <a class="nav-item" href="kelola_produk.html"><span class="icon"><i data-lucide="package"></i></span> Kelola Produk</a>
+      <a class="nav-item" href="kelola_artikel.html"><span class="icon"><i data-lucide="newspaper"></i></span> Kelola Artikel</a>
       <div class="nav-section">Kelola Pengguna</div>
-      <a class="nav-item" href="kelola_pengguna.html"><span class="icon">👥</span> Kelola Pengguna</a>
-      <a class="nav-item" href="kelola_transaksi.html"><span class="icon">🧾</span> Kelola Transaksi</a>
+      <a class="nav-item" href="kelola_pengguna.html"><span class="icon"><i data-lucide="users"></i></span> Kelola Pengguna</a>
+      <a class="nav-item" href="kelola_transaksi.html"><span class="icon"><i data-lucide="receipt-text"></i></span> Kelola Transaksi</a>
       <div class="nav-section">Lainnya</div>
-      <a class="nav-item" href="index.html"><span class="icon">🌐</span> Lihat Website</a>
+      <a class="nav-item" href="index.html"><span class="icon"><i data-lucide="globe"></i></span> Lihat Website</a>
     </nav>
     <div class="sidebar-footer">
       <div class="admin-info">
@@ -268,7 +268,7 @@
           <div class="admin-role">Administrator</div>
         </div>
       </div>
-      <a href="index.html" onclick="return confirm('Yakin ingin keluar?')" style="display:flex; align-items:center; gap:0.5rem; margin-top:0.75rem; padding:0.55rem 0.6rem; border-radius:8px; font-size:0.8rem; color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.06);">🚪 Keluar</a>
+      <a href="index.html" onclick="return confirm('Yakin ingin keluar?')" style="display:flex; align-items:center; gap:0.5rem; margin-top:0.75rem; padding:0.55rem 0.6rem; border-radius:8px; font-size:0.8rem; color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.06);"><i data-lucide="log-out"></i> Keluar</a>
     </div>
   </aside>
 
@@ -277,14 +277,14 @@
     <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
-        <button onclick="toggleSidebar()" style="background:none;border:none;cursor:pointer;font-size:1.2rem;display:none" id="menuBtn">☰</button>
+        <button onclick="toggleSidebar()" style="background:none;border:none;cursor:pointer;font-size:1.2rem;display:none" id="menuBtn"><i data-lucide="menu"></i></button>
         <div>
           <h1>Dashboard</h1>
           <div class="breadcrumb-top">Admin / Dashboard</div>
         </div>
       </div>
       <div class="topbar-right">
-        <button class="notif-btn">🔔<span class="notif-dot"></span></button>
+        <button class="notif-btn"><i data-lucide="bell"></i><span class="notif-dot"></span></button>
       </div>
     </div>
 
@@ -294,7 +294,7 @@
       <!-- STATS -->
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dcfce7">💰</div>
+          <div class="stat-icon" style="background:#dcfce7"><i data-lucide="wallet"></i></div>
           <div class="stat-info">
             <div class="stat-val">Rp18,4jt</div>
             <div class="stat-label">Pendapatan Bulan Ini</div>
@@ -302,7 +302,7 @@
           <span class="stat-badge badge-green">+12%</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#ede9fe">🧾</div>
+          <div class="stat-icon" style="background:#ede9fe"><i data-lucide="receipt-text"></i></div>
           <div class="stat-info">
             <div class="stat-val">312</div>
             <div class="stat-label">Total Pesanan</div>
@@ -310,7 +310,7 @@
           <span class="stat-badge badge-green">+8%</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#dbeafe">👥</div>
+          <div class="stat-icon" style="background:#dbeafe"><i data-lucide="users"></i></div>
           <div class="stat-info">
             <div class="stat-val">1.240</div>
             <div class="stat-label">Total Pengguna</div>
@@ -318,7 +318,7 @@
           <span class="stat-badge badge-green">+24 baru</span>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:#fef9c3">🛍️</div>
+          <div class="stat-icon" style="background:#fef9c3"><i data-lucide="package"></i></div>
           <div class="stat-info">
             <div class="stat-val">120</div>
             <div class="stat-label">Total Produk</div>
@@ -477,19 +477,19 @@
             </div>
             <div class="quick-grid">
               <a class="quick-btn" href="kelola_produk.html">
-                <span class="qi">➕</span>
+                <span class="qi"><i data-lucide="plus"></i></span>
                 <span class="qt">Tambah Produk</span>
               </a>
               <a class="quick-btn" href="kelola_artikel.html">
-                <span class="qi">📝</span>
+                <span class="qi"><i data-lucide="square-pen"></i></span>
                 <span class="qt">Tulis Artikel</span>
               </a>
               <a class="quick-btn" href="kelola_transaksi.html">
-                <span class="qi">🧾</span>
+                <span class="qi"><i data-lucide="receipt-text"></i></span>
                 <span class="qt">Cek Transaksi</span>
               </a>
               <a class="quick-btn" href="kelola_pengguna.html">
-                <span class="qi">👥</span>
+                <span class="qi"><i data-lucide="users"></i></span>
                 <span class="qt">Kelola Pengguna</span>
               </a>
             </div>
@@ -528,6 +528,10 @@
       </div>
     `;
   }).join('');
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
 </script>
 </body>
 </html>
