@@ -181,7 +181,7 @@
         <div class="field">
           <label>Nama Depan</label>
           <div class="input-wrap">
-            <span class="ico">👤</span>
+            <span class="ico"></span>
             <input type="text" id="fname" placeholder="User"/>
           </div>
           <div class="field-error" id="err-fname">Wajib diisi.</div>
@@ -189,7 +189,7 @@
         <div class="field">
           <label>Nama Belakang</label>
           <div class="input-wrap">
-            <span class="ico">👤</span>
+            <span class="ico"></span>
             <input type="text" id="lname" placeholder="User"/>
           </div>
         </div>
@@ -199,7 +199,7 @@
       <div class="field">
         <label>Email</label>
         <div class="input-wrap">
-          <span class="ico">✉️</span>
+          <span class="ico"></span>
           <input type="email" id="email" placeholder="user@email.com"/>
         </div>
         <div class="field-error" id="err-email">Email tidak valid.</div>
@@ -209,7 +209,7 @@
       <div class="field">
         <label>Nomor HP</label>
         <div class="input-wrap">
-          <span class="ico">📱</span>
+          <span class="ico"></span>
           <input type="tel" id="phone" placeholder="08xxxxxxxxxx"/>
         </div>
         <div class="field-error" id="err-phone">Nomor HP tidak valid.</div>
@@ -219,9 +219,9 @@
       <div class="field">
         <label>Password</label>
         <div class="input-wrap">
-          <span class="ico">🔒</span>
+          <span class="ico"></span>
           <input type="password" id="password" placeholder="Min. 8 karakter" oninput="checkStrength(this.value)"/>
-          <button class="toggle-pw" type="button" onclick="togglePw('password',this)">👁️</button>
+          <button class="toggle-pw" type="button" onclick="togglePw('password',this)"></button>
         </div>
         <div class="pw-strength">
           <div class="pw-bars">
@@ -239,7 +239,7 @@
       <div class="field">
         <label>Konfirmasi Password</label>
         <div class="input-wrap">
-          <span class="ico">🔒</span>
+          <span class="ico"></span>
           <input type="password" id="confirm" placeholder="Ulangi password"/>
           <button class="toggle-pw" type="button" onclick="togglePw('confirm',this)">👁️</button>
         </div>
@@ -317,7 +317,7 @@
     if (!phone || !/^08\d{8,11}$/.test(phone))          { setError('err-phone','phone',true); valid=false; }
     if (pw.length < 8)                                  { setError('err-password','password',true); valid=false; }
     if (pw !== confirm)                                 { setError('err-confirm','confirm',true); valid=false; }
-    if (!terms) { showToast('❌ Centang syarat & ketentuan dulu ya!', false); valid=false; }
+    if (!terms) { showToast('Centang syarat & ketentuan dulu ya!', false); valid=false; }
     if (!valid) return;
 
     const btn = document.getElementById('regBtn');
@@ -325,7 +325,7 @@
 
     setTimeout(() => {
       btn.disabled = false; btn.textContent = 'Buat Akun →';
-      showToast('✅ Akun berhasil dibuat! Mengarahkan...');
+      showToast(' Akun berhasil dibuat! Mengarahkan...');
       setTimeout(() => window.location.href = 'dashboard_user.html', 1400);
     }, 1600);
   }
